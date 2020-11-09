@@ -166,22 +166,31 @@
 		
 		/*<![CDATA[*/
 
-		var terms = /*[[${concepts}]]*/'default';/*]]>*/
-		//console.log("kontzeptuaaaaaak \n" + terms);
+		var terms = /*[[${concepts}]]*/'default';
+		
+		/*]]>*/
+		console.log("kontzeptuaaaaaak \n" + terms);
 		//By lines
 		var lines = terms.split('\n');
-		txt += "<table border='1'>";
+		
 		for (var i = 0; i < lines.length-1; i++) {
 			var concept = lines[i].split(":");
 			var j =i+1;
+			console.log(j.toString());
+			var ul = document.createElement("ul");
+			ul.setAttribute("class", "list-group list-group-flush");
+			
 			txt += "<li class='list-group-item'>"
 			txt += "<p>"+ concept[0]+"</p>" + 
-			"<p><a class='btn btn-primary' data-toggle='collapse' href='#multiCollapseExample"+i.toString()+"' role='button' "+ 
-			"aria-expanded='false' aria-controls='multiCollapseExample"+i.toString()+"'>Zabaldu kontzeptua</a> </p>";
-			var a ="<table class='table'><thead class='thead-dark'><tr><th scope='col'>#</th><th scope='col'>First</th><th scope='col'>Last</th><th scope='col'>Handle</th></tr>"+
- 			"</thead><tbody><tr><th scope='row'>1</th><td>Mark</td><td>Otto</td><td>@mdo</td></tr><tr><th scope='row'>2</th><td>Jacob</td><td>Thornton</td><td>@fat</td>"+
-    		"</tr><tr><th scope='row'>3</th><td>Larry</td><td>the Bird</td><td>@twitter</td></tr></tbody></table>"
-			txt += "<div class='row'><div class='col'><div class='collapse multi-collapse' id='multiCollapseExample"+i.toString()+"'><div class='card card-body'>" + a; 
+			"<p><a class='btn btn-primary' data-toggle='collapse' href='#multiCollapseExample"+j.toString()+"' role='button' "+ 
+			"aria-expanded='false' aria-controls='multiCollapseExample"+j.toString()+"'>Zabaldu kontzeptua</a> </p>";
+			var a ="<table class='table'><thead class='thead-dark'><tr><th scope='col'>#</th><th scope='col'>Term</th><th scope='col'>Path</th></tr>"+
+ 			"</thead><tbody><tr><th scope='row'>1</th><td>Annontion</td><td>/java/build</td></tr><tr><th scope='row'>2</th><td>Source</td><td>java/workers</td>"+
+    		"</tr><tr><th scope='row'>3</th><td>Theme</td><td>/resources/index.html</td></tr></tbody></table>"
+			
+    		
+    		
+    		txt += "<div class='row'><div class='col'><div class='collapse multi-collapse' id='multiCollapseExample"+j.toString()+"'><div class='card card-body'>" + a; 
 			
 			
 			
