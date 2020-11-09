@@ -1,0 +1,23 @@
+body{
+	background:#e6e6e6;
+}
+.navbar-custom {
+    background-color: #66B0EA;
+}
+
+.navbar-custom .navbar-brand{
+	color: white;
+	
+	
+}
+
+.card-header{
+	font-size: x-large;
+	font-weight: bold;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	
+}
+
+.goiburua{
+	font-size: medium;
+}

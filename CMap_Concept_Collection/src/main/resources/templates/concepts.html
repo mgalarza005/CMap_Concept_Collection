@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::Layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Home page</title>
+
+
+
+</head>
+<body>
+	<section>
+		<p class="goiburua">
+		<center>
+
+			<h1>This are the concepts</h1>
+			<h2>Here you can find the concepts related to the project</h2>
+
+
+		</center>
+		</p>
+
+		<div class="card text-center" id="div1">
+			<div class="card-header">Concepts</div>
+			
+				<!-- 
+				 <script> 
+				$(function() {
+					
+					var str = "<p>1. kontzeptua</p>" + "<p>1. KOokokoko</p>";
+					$("#proba").html(str);
+					console.log("Hau dago: "+ str);
+				});
+				
+				</script>  -->
+
+
+
+
+				
+
+					<!--
+					<script th:inline="javascript">
+					/*<![CDATA[*/
+
+					var terms = /*[[${concepts}]]*/'default';/*]]>*/
+					//console.log("kontzeptuaaaaaak \n" + terms);
+					//By lines
+					var lines = terms.split('\n');
+					//console.log(lines.length);
+					//console.log("Lines: \n " + lines + '\n');
+					
+				
+					var d00 = document.createElement("div");
+					d00.setAttribute("class", "card text-center");
+					
+					
+					var d0 = document.createElement("div");
+					d0.setAttribute("class", "card-body");
+					d00.appendChild(d0);
+					
+					var ul = document.createElement("ul");
+					ul.setAttribute("class", "list-group list-group-flush");
+					ul.setAttribute("width", "%70");
+					ul.setAttribute("margin", "auto");
+					d0.appendChild(ul);
+
+					for (var i = 0; i < lines.length-1; i++) {
+						var concept = lines[i].split(":");
+						
+						var li = document.createElement("li");
+						li.setAttribute("class", "list-group-item");
+						ul.appendChild(li);
+						
+						var p1 = document.createElement("p");
+						p1.textContent= concept[0];
+						li.appendChild(p1);
+						
+						
+						var p2= document.createElement("p");
+						li.appendChild(p2);
+						
+						
+						var a= document.createElement("a");
+						
+						a.setAttribute("data-toggle","collapse");
+						a.setAttribute("href","#multiCollapseExample"+i);
+						a.setAttribute("role","button");
+						a.setAttribute("aria-expanded","false");
+						
+						a.setAttribute("aria-controls","multiCollapseExample"+i);	
+						a.textContent= "Zabaldu kontzeptua";
+						p2.appendChild(a);
+						
+						
+						var d1 = document.createElement("div");
+						d1.setAttribute("class","row");
+						li.appendChild(d1);
+						
+								
+						
+						
+						var d2 = document.createElement("div");
+						d2.setAttribute("class","col");
+						d1.appendChild(d2);
+						
+						var d3 = document.createElement("div");
+						d3.setAttribute("class","collapse multi-collapse");
+						d3.setAttribute("id","multiCollapseExample"+i);
+						d2.appendChild(d3);
+						
+						var d4 = document.createElement("div");
+						d4.setAttribute("class","card card-body");
+						d4.textContent= concept[1];
+						d3.appendChild(d4);
+						
+						
+						
+						document.body.appendChild(li);   
+						
+
+						console.log(concept[0]);
+						console.log(concept[1]);
+
+					}
+					</script> -->
+					<!-- 
+						<div class="row">
+							<div class="col">
+								<div class="collapse multi-collapse" id="multiCollapseExample1">
+									<div class="card card-body"></div>
+								</div>
+							</div>
+
+						</div>
+					</li>
+					
+					<li class="list-group-item">
+
+						<p>Bigarre kontzeptua</p>
+						<p>
+						<a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="false"
+						 aria-controls="multiCollapseExample2">Zabaldu kontzeptua</a>
+						</p>
+						<div class='row'>
+							<div class='col'>
+								<div class='collapse multi-collapse' id='multiCollapseExample'>
+									<div class='card card-body'></div>
+								</div>
+							</div>
+
+						</div>
+					</li>
+					<li class="list-group-item">Vestibulum at eros</li>
+				 -->
+				 
+				</ul>
+
+			
+
+		</div>
+		<script th:inline="javascript">
+		var txt="";
+		
+		/*<![CDATA[*/
+
+		var terms = /*[[${concepts}]]*/'default';/*]]>*/
+		//console.log("kontzeptuaaaaaak \n" + terms);
+		//By lines
+		var lines = terms.split('\n');
+		txt += "<table border='1'>";
+		for (var i = 0; i < lines.length-1; i++) {
+			var concept = lines[i].split(":");
+			var j =i+1;
+			txt += "<li class='list-group-item'>"
+			txt += "<p>"+ concept[0]+"</p>" + 
+			"<p><a class='btn btn-primary' data-toggle='collapse' href='#multiCollapseExample"+i.toString()+"' role='button' "+ 
+			"aria-expanded='false' aria-controls='multiCollapseExample"+i.toString()+"'>Zabaldu kontzeptua</a> </p>";
+			txt += "<div class='row'><div class='col'><div class='collapse multi-collapse' id='multiCollapseExample"+i.toString()+"'><div class='card card-body'>"+ concept[1]+"</div></div></div></div>";
+			
+			
+			
+			
+		
+		}
+		txt += "</li>";
+		document.getElementById("div1").innerHTML = txt;
+		
+		</script>
+	</section>
+
+</body>
+</html>
