@@ -178,9 +178,68 @@
 			txt += "<p>"+ concept[0]+"</p>" + 
 			"<p><a class='btn btn-primary' data-toggle='collapse' href='#multiCollapseExample"+i.toString()+"' role='button' "+ 
 			"aria-expanded='false' aria-controls='multiCollapseExample"+i.toString()+"'>Zabaldu kontzeptua</a> </p>";
-			txt += "<div class='row'><div class='col'><div class='collapse multi-collapse' id='multiCollapseExample"+i.toString()+"'><div class='card card-body'>"+ concept[1]+"</div></div></div></div>";
+			var a ="<table class='table'><thead class='thead-dark'><tr><th scope='col'>#</th><th scope='col'>First</th><th scope='col'>Last</th><th scope='col'>Handle</th></tr>"+
+ 			"</thead><tbody><tr><th scope='row'>1</th><td>Mark</td><td>Otto</td><td>@mdo</td></tr><tr><th scope='row'>2</th><td>Jacob</td><td>Thornton</td><td>@fat</td>"+
+    		"</tr><tr><th scope='row'>3</th><td>Larry</td><td>the Bird</td><td>@twitter</td></tr></tbody></table>"
+			txt += "<div class='row'><div class='col'><div class='collapse multi-collapse' id='multiCollapseExample"+i.toString()+"'><div class='card card-body'>" + a; 
 			
 			
+			
+			
+    		
+    		/*
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+			
+			
+			
+			txt += "<table class='table'>"+
+			 	"<thead class='thead-dark'>"+
+			   	"<tr>"+
+			    "<th scope='col'>#</th>"+
+			    "<th scope='col'>Terminoa</th>"+
+			    "<th scope='col'>Agertzen den fitxategia</th>"+
+			     
+			    "</tr>"+
+			  "</thead>"+
+				  "<tbody>";
+				  
+		for (var p = 0; p < concept[1].length;p++) {
+			txt += "<tr> <th scope='row'>1</th>  <tr><th scope='row'>1</th> <td>"+ concept[1]+"</td> </tr>"
+		}
+		txt +="  </tbody> </table>";
+				*/
+		txt +="</div></div></div></div>";
+		
+		
 			
 			
 		
