@@ -24,247 +24,68 @@
 
 		<div class="card text-center" id="div1">
 			<div class="card-header">Concepts</div>
-			
-				<!-- 
-				 <script> 
-				$(function() {
-					
-					var str = "<p>1. kontzeptua</p>" + "<p>1. KOokokoko</p>";
-					$("#proba").html(str);
-					console.log("Hau dago: "+ str);
-				});
-				
-				</script>  -->
-
-
-
-
-				
-
-					<!--
-					<script th:inline="javascript">
-					/*<![CDATA[*/
-
-					var terms = /*[[${concepts}]]*/'default';/*]]>*/
-					//console.log("kontzeptuaaaaaak \n" + terms);
-					//By lines
-					var lines = terms.split('\n');
-					//console.log(lines.length);
-					//console.log("Lines: \n " + lines + '\n');
-					
-				
-					var d00 = document.createElement("div");
-					d00.setAttribute("class", "card text-center");
-					
-					
-					var d0 = document.createElement("div");
-					d0.setAttribute("class", "card-body");
-					d00.appendChild(d0);
-					
-					var ul = document.createElement("ul");
-					ul.setAttribute("class", "list-group list-group-flush");
-					ul.setAttribute("width", "%70");
-					ul.setAttribute("margin", "auto");
-					d0.appendChild(ul);
-
-					for (var i = 0; i < lines.length-1; i++) {
-						var concept = lines[i].split(":");
-						
-						var li = document.createElement("li");
-						li.setAttribute("class", "list-group-item");
-						ul.appendChild(li);
-						
-						var p1 = document.createElement("p");
-						p1.textContent= concept[0];
-						li.appendChild(p1);
-						
-						
-						var p2= document.createElement("p");
-						li.appendChild(p2);
-						
-						
-						var a= document.createElement("a");
-						
-						a.setAttribute("data-toggle","collapse");
-						a.setAttribute("href","#multiCollapseExample"+i);
-						a.setAttribute("role","button");
-						a.setAttribute("aria-expanded","false");
-						
-						a.setAttribute("aria-controls","multiCollapseExample"+i);	
-						a.textContent= "Zabaldu kontzeptua";
-						p2.appendChild(a);
-						
-						
-						var d1 = document.createElement("div");
-						d1.setAttribute("class","row");
-						li.appendChild(d1);
-						
-								
-						
-						
-						var d2 = document.createElement("div");
-						d2.setAttribute("class","col");
-						d1.appendChild(d2);
-						
-						var d3 = document.createElement("div");
-						d3.setAttribute("class","collapse multi-collapse");
-						d3.setAttribute("id","multiCollapseExample"+i);
-						d2.appendChild(d3);
-						
-						var d4 = document.createElement("div");
-						d4.setAttribute("class","card card-body");
-						d4.textContent= concept[1];
-						d3.appendChild(d4);
-						
-						
-						
-						document.body.appendChild(li);   
-						
-
-						console.log(concept[0]);
-						console.log(concept[1]);
-
-					}
-					</script> -->
-					<!-- 
-						<div class="row">
-							<div class="col">
-								<div class="collapse multi-collapse" id="multiCollapseExample1">
-									<div class="card card-body"></div>
-								</div>
-							</div>
-
-						</div>
-					</li>
-					
-					<li class="list-group-item">
-
-						<p>Bigarre kontzeptua</p>
-						<p>
-						<a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="false"
-						 aria-controls="multiCollapseExample2">Zabaldu kontzeptua</a>
-						</p>
-						<div class='row'>
-							<div class='col'>
-								<div class='collapse multi-collapse' id='multiCollapseExample'>
-									<div class='card card-body'></div>
-								</div>
-							</div>
-
-						</div>
-					</li>
-					<li class="list-group-item">Vestibulum at eros</li>
-				 -->
-				 
-				</ul>
-
-			
 
 		</div>
 		<script th:inline="javascript">
-		var txt="";
-		
-		/*<![CDATA[*/
+			var txt = "";
 
-		var terms = /*[[${concepts}]]*/'default';
-		
-		/*]]>*/
-		console.log("kontzeptuaaaaaak \n" + terms);
-		//By lines
-		var lines = terms.split('\n');
-		
-		for (var i = 0; i < lines.length-1; i++) {
-			var concept = lines[i].split(":");
-			var j =i+1;
-			console.log(j.toString());
-			var ul = document.createElement("ul");
-			ul.setAttribute("class", "list-group list-group-flush");
-			
-			txt += "<li class='list-group-item'>"
-			txt += "<p>"+ concept[0]+"</p>" + 
-			"<p><a class='btn btn-primary' data-toggle='collapse' href='#multiCollapseExample"+j.toString()+"' role='button' "+ 
-			"aria-expanded='false' aria-controls='multiCollapseExample"+j.toString()+"'>Zabaldu kontzeptua</a> </p>";
-			
-			//Table inside each concept
-			var a ="<table class='table'>"+
-			"<thead class='thead-dark'><tr><th scope='col'>#</th><th scope='col'>Term</th><th scope='col'>Path</th><th scope='col'>Files</th></tr>"+
- 			"</thead><tbody>"+
-			
-			"<tr><th scope='row'>1</th><td>Annontion</td><td>/java/build</td></tr><tr><th scope='row'>2</th><td>Source</td><td>java/workers</td>"+
-    		"</tr><tr><th scope='row'>3</th><td>Theme</td><td>/resources/index.html</td></tr>"
-			
-    		a+="</tbody></table>";
-    		console.log("Terminoak: " + concept[1]);
-    		
-    		var terms = concept[1].split(",");
-    		console.log("TermsSplit: "+ terms);
-    		
-    		txt += "<div class='row'><div class='col'><div class='collapse multi-collapse' id='multiCollapseExample"+j.toString()+"'><div class='card card-body'>" + a; 
-			
-			
-			
-			
-    		
-    		/*
-<table class="table">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
-			
-			
-			
-			txt += "<table class='table'>"+
-			 	"<thead class='thead-dark'>"+
-			   	"<tr>"+
-			    "<th scope='col'>#</th>"+
-			    "<th scope='col'>Terminoa</th>"+
-			    "<th scope='col'>Agertzen den fitxategia</th>"+
-			     
-			    "</tr>"+
-			  "</thead>"+
-				  "<tbody>";
-				  
-		for (var p = 0; p < concept[1].length;p++) {
-			txt += "<tr> <th scope='row'>1</th>  <tr><th scope='row'>1</th> <td>"+ concept[1]+"</td> </tr>"
-		}
-		txt +="  </tbody> </table>";
-				*/
-		txt +="</div></div></div></div>";
-		
-		
-			
-			
-		
-		}
-		txt += "</li>";
-		document.getElementById("div1").innerHTML = txt;
-		
+			/*<![CDATA[*/
+
+			var terms = /*[[${concepts}]]*/'default';
+
+			/*]]>*/
+			console.log("kontzeptuaaaaaak \n" + terms);
+			//By lines
+			var lines = terms.split('\n');
+
+			for (var i = 0; i < lines.length - 1; i++) {
+				var concept = lines[i].split(":");
+				var j = i + 1;
+				console.log(j.toString());
+				var ul = document.createElement("ul");
+				ul.setAttribute("class", "list-group list-group-flush");
+
+				txt += "<li class='list-group-item'>"
+				txt += "<p>"
+						+ concept[0]
+						+ "</p>"
+						+ "<p><a class='btn btn-primary' data-toggle='collapse' href='#multiCollapseExample"
+						+ j.toString()
+						+ "' role='button' "
+						+ "aria-expanded='false' aria-controls='multiCollapseExample"
+						+ j.toString() + "'>Zabaldu kontzeptua</a> </p>";
+
+				console.log("Terminoak: " + concept[1]);
+
+				var terms = concept[1].split(",");
+				console.log("TermsSplit: " + terms);
+				//Table inside each concept
+				var a = "<table class='table'>"
+						+ "<thead class='thead-dark'><tr><th scope='col'>#</th><th scope='col'>Term</th><th scope='col'>Path</th><th scope='col'>Files</th></tr>"
+						+ "</thead><tbody>";
+				for(var k=0; k<terms.length; k++) {
+					var t= k+1;
+					a+="<tr><th scope='row'>"+t.toString()+"</th><td>"
+					+  "<a href='http://localhost:9898/codefiles/index.html'>"+ terms[k]+"</a> "+
+					
+				
+					
+					"</td><td>/java/build</td></tr>";
+				}
+/*
+						"<tr><th scope='row'>1</th><td>Annontion</td><td>/java/build</td></tr><tr><th scope='row'>2</th><td>Source</td><td>java/workers</td>"
+						+ "</tr><tr><th scope='row'>3</th><td>Theme</td><td>/resources/index.html</td></tr>"
+*/
+				a += "</tbody></table>";
+
+				txt += "<div class='row'><div class='col'><div class='collapse multi-collapse' id='multiCollapseExample"
+						+ j.toString() + "'><div class='card card-body'>" + a;
+
+				txt += "</div></div></div></div>";
+
+			}
+			txt += "</li>";
+			document.getElementById("div1").innerHTML = txt;
 		</script>
 	</section>
 
