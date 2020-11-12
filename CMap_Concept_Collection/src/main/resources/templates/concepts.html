@@ -188,19 +188,16 @@
 			//Table inside each concept
 			var a ="<table class='table'>"+
 			"<thead class='thead-dark'><tr><th scope='col'>#</th><th scope='col'>Term</th><th scope='col'>Path</th><th scope='col'>Files</th></tr>"+
- 			"</thead><tbody>";
- 			
- 			var 
- 			/*
- 			for (var o=0; o<kkk; o++){
- 				
- 			}*/
+ 			"</thead><tbody>"+
 			
- 			txt +="<tr><th scope='row'>1</th><td>Annontion</td><td>/java/build</td></tr><tr>"+
-			"<th scope='row'>2</th><td>Source</td><td>java/workers</td>"+
-    		"</tr><tr><th scope='row'>3</th><td>Theme</td><td>/resources/index.html</td></tr></tbody></table>"
+			"<tr><th scope='row'>1</th><td>Annontion</td><td>/java/build</td></tr><tr><th scope='row'>2</th><td>Source</td><td>java/workers</td>"+
+    		"</tr><tr><th scope='row'>3</th><td>Theme</td><td>/resources/index.html</td></tr>"
 			
+    		a+="</tbody></table>";
+    		console.log("Terminoak: " + concept[1]);
     		
+    		var terms = concept[1].split(",");
+    		console.log("TermsSplit: "+ terms);
     		
     		txt += "<div class='row'><div class='col'><div class='collapse multi-collapse' id='multiCollapseExample"+j.toString()+"'><div class='card card-body'>" + a; 
 			
