@@ -12,13 +12,13 @@
 </head>
 <body>
 	<section>
-		<p class="goiburua">
-		
+		<div class="cr">
 
-			<h1>This are the concepts</h1>
-			<h2>Here you can find the concepts related to the project</h2>
-		</p>
 
+			<h2>These are the concepts related</h2>
+			<h2>to the project</h2>
+
+		</div>
 		<div class="card text-center" id="div1">
 			<div class="card-header">Concepts</div>
 
@@ -39,23 +39,23 @@
 						var result = "<ul>";
 						var aux="";
 						var ss=lines[i].split("[");
-						console.log(ss);
+						//console.log(ss);
 						var ss1 = ss[1].split(";");
 						//console.log(ss1);
 						//console.log("Emaitza: " + ss1[0].split(" "));
 						
 						for (var j=0; j<ss1.length-1;j++) {
-							var ss2 = ss1[i].split(" ");
-							//console.log(ss2);
+							var ss2 = ss1[j].split(" ");
+							console.log("Emaitza: " + ss2);
 							var ss3 = ss2[0].split(":");
-							aux +="<li><a href='http://localhost:9898/codefiles/"+ss3[0]+"'>"+ss3[0]+"</a></li>";
+							aux +="<li><a class='linka' href='http://localhost:9898/codefiles/"+ss3[0]+"'>"+ss3[0]+"</a></li>";
 							
 						}
 						//console.log("Emaitza: " + ss1[0].split(" "));
-						var ss2 = ss1[0].split(" ");
+						var ss2 = ss1[ss1.length-1].split(" ");
 						var ss3 = ss2[0].split(":");
 						
-						aux +="<li><a href='http://localhost:9898/codefiles/"+ss3[0]+"'>"+ss3[0]+"</a></li>";
+						aux +="<li><a class='linka' href='http://localhost:9898/codefiles/"+ss3[0]+"'>"+ss3[0]+"</a></li>";
 						result += aux;
 						result += "</ul>";
 						return(result);
@@ -68,19 +68,19 @@
 				for (var i = 0; i < lines.length - 1; i++) {
 					if (lines[i].includes(term1)){
 						var ss=lines[i].split("[");
-						console.log(ss);
+						//console.log(ss);
 						var ss1 = ss[1].split(";");
 						//console.log(ss1);
 						//console.log("Emaitza: " + ss1[0].split(" "));
 						
 						for (var j=0; j<ss1.length-1;j++) {
-							var ss2 = ss1[i].split(" ");
+							var ss2 = ss1[j].split(" ");
 							console.log(ss2);
 							var ss3 = ss2[1].split("]");
 							aux +="<li>"+ss3[0]+"</li>";
 						}
-						console.log("Emaitza: " + ss1[0].split(" "));
-						var ss2 = ss1[0].split(" ");
+						//console.log("Emaitza: " + ss1[0].split(" "));
+						var ss2 = ss1[ss1.length-1].split(" ");
 						var ss3 = ss2[1].split("]");
 						aux +="<li>"+ss3[0]+"</li>";
 						result += aux;
@@ -111,7 +111,7 @@
 						+ j.toString()
 						+ "' role='button' "
 						+ "aria-expanded='false' aria-controls='multiCollapseExample"
-						+ j.toString() + "'>Zabaldu kontzeptua</a> </p>";
+						+ j.toString() + "'>Open concept</a> </p>";
 
 				//console.log("Terminoak: " + concept[1]);
 
@@ -127,11 +127,11 @@
 					a+="<tr><th scope='row'>"+t.toString()+"</th><td>"
 					+   term1+
 					
-					"</td><td>"+
+					"</td><td  align='center'> "+
 					
 					getFile(term1) +
 					
-					"</td><td>"+ 
+					"</td><td align='center'>"+ 
 					getPath(term1)
 					"</td></tr>";
 				}

@@ -3,10 +3,11 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="#" />
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 
 	<link  rel="stylesheet" th:href="@{/css/style.css}" />
     <title th:text="${title}">Base html</title>
@@ -14,7 +15,7 @@
   <body>
    <!-- Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-custom bg-ligth mb-3">
-  <th:a th:class="navbar-brand" thref="#">KONTZEPTU BILDUMA</ th:a>
+  <th:a th:class="navbar-brand" href="/">CONCEPT COLLECTION </th:a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
