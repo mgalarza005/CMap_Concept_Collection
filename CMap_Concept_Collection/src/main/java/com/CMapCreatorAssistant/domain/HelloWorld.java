@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 public class HelloWorld {
 	private String concepts="";
+	private String paths="";
 	//private String saludo;
 
 	@Autowired
@@ -37,16 +38,25 @@ public class HelloWorld {
 	 */
 	public void getConcepts() throws IOException {
 		String s;
-		BufferedReader bf = new BufferedReader(new FileReader("C:\\Users\\MIKEL1\\git\\CMap_Concept_Collection\\.git\\CMap_Concept_Collection\\src\\main\\resources\\templates\\clusterakEginda.txt"));
-
-
-
+		BufferedReader bf = new BufferedReader(new FileReader("C:\\Users\\MIKEL1\\git\\CMap_Concept_Collection\\.git\\CMap_Concept_Collection\\src\\main\\resources\\static\\files\\clusterakEginda.txt"));
 		while ((s = bf.readLine()) != null) {
 			concepts += s + "\n";
 		}
 
 		bf.close();
 	}
+	public void getPaths() throws IOException {
+		String s1;
+		BufferedReader bf1 = new BufferedReader(new FileReader("C:\\Users\\MIKEL1\\git\\CMap_Concept_Collection\\.git\\CMap_Concept_Collection\\src\\main\\resources\\static\\files\\termTable.txt"));
+		while ((s1 = bf1.readLine()) != null) {
+			paths += s1 + "\n";
+		}
+
+		bf1.close();
+	}
+	
+	
+	
 	
 	//Bakar bat lortzeko
 	@RequestMapping("/codefiles/{fname}")
@@ -70,9 +80,12 @@ public class HelloWorld {
 	@RequestMapping("/concepts")
 	public ModelAndView About(Model model) throws IOException {
 		getConcepts();
+		getPaths();
 
 		model.addAttribute("title", "Concepts");
 		model.addAttribute("concepts", concepts);
+		model.addAttribute("paths", paths);
+		
 		ModelAndView modelAndViewCon = new ModelAndView("concepts");
 		return modelAndViewCon;
 	}

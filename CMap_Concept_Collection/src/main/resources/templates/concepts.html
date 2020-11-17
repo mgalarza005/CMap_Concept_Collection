@@ -32,16 +32,63 @@
 			/*<![CDATA[*/
 
 			var terms = /*[[${concepts}]]*/'default';
+			var paths =/*[[${paths}]]*/'default';
 
 			/*]]>*/
-			console.log("kontzeptuaaaaaak \n" + terms);
+			function getFile(term1){
+				var lines = paths.split('\n');
+				for (var i = 0; i < lines.length - 1; i++) {
+					if (lines[i].includes(term1)){
+						var ss=lines[i].split("[");
+						console.log(ss);
+						var ss1 = ss[1].split(";");
+						//console.log(ss1);
+						//console.log("Emaitza: " + ss1[0].split(" "));
+						
+						for (var j=0; j<ss1.length-1;j++) {
+							var ss2 = ss1[i].split(" ");
+							console.log(ss2);
+							//return(ss2[1]);
+						}
+						console.log("Emaitza: " + ss1[0].split(" "));
+						var ss2 = ss1[0].split(" ");
+						
+						var ss3 = ss2[0].split(":");
+						return(ss3[0]);
+					}}		
+			}
+			function getPath(term1){
+				var lines = paths.split('\n');
+				for (var i = 0; i < lines.length - 1; i++) {
+					if (lines[i].includes(term1)){
+						var ss=lines[i].split("[");
+						console.log(ss);
+						var ss1 = ss[1].split(";");
+						//console.log(ss1);
+						//console.log("Emaitza: " + ss1[0].split(" "));
+						
+						for (var j=0; j<ss1.length-1;j++) {
+							var ss2 = ss1[i].split(" ");
+							console.log(ss2);
+							//return(ss2[1]);
+						}
+						console.log("Emaitza: " + ss1[0].split(" "));
+						var ss2 = ss1[0].split(" ");
+						
+						var ss3 = ss2[1].split("]");
+						return(ss3[0]);
+					}}		
+			}
+			
+			//console.log("kontzeptuaaaaaak \n" + terms);
+			//console.log("Paths \n " + paths);
 			//By lines
 			var lines = terms.split('\n');
 
 			for (var i = 0; i < lines.length - 1; i++) {
 				var concept = lines[i].split(":");
 				var j = i + 1;
-				console.log(j.toString());
+				//console.log(j.toString());
 				var ul = document.createElement("ul");
 				ul.setAttribute("class", "list-group list-group-flush");
 
@@ -55,23 +102,32 @@
 						+ "aria-expanded='false' aria-controls='multiCollapseExample"
 						+ j.toString() + "'>Zabaldu kontzeptua</a> </p>";
 
-				console.log("Terminoak: " + concept[1]);
+				//console.log("Terminoak: " + concept[1]);
 
 				var terms = concept[1].split(",");
-				console.log("TermsSplit: " + terms);
+				//console.log("TermsSplit: " + terms);
 				//Table inside each concept
 				var a = "<table class='table'>"
-						+ "<thead class='thead-dark'><tr><th scope='col'>#</th><th scope='col'>Term</th><th scope='col'>Path</th><th scope='col'>Files</th></tr>"
+						+ "<thead class='thead-dark'><tr><th scope='col'>#</th><th scope='col'>Term</th><th scope='col'>Files</th><th scope='col'>Paths</th></tr>"
 						+ "</thead><tbody>";
 				for(var k=0; k<terms.length; k++) {
 					var t= k+1;
+					var term1=terms[k]
 					a+="<tr><th scope='row'>"+t.toString()+"</th><td>"
-					+  "<a href='http://localhost:9898/codefiles/index.html.content'>"+ terms[k]+"</a> "+
+					+   term1+
 					
 				
 					
-					"</td><td>/java/build</td></tr>";
+					"</td><td>"+
+					
+					"<a href='http://localhost:9898/codefiles/"+getFile(term1)+"'>"+getFile(term1) +"</a> "+
+					
+					
+					"</td><td>"+ 
+					getPath(term1)
+					"</td></tr>";
 				}
+		
 /*
 						"<tr><th scope='row'>1</th><td>Annontion</td><td>/java/build</td></tr><tr><th scope='row'>2</th><td>Source</td><td>java/workers</td>"
 						+ "</tr><tr><th scope='row'>3</th><td>Theme</td><td>/resources/index.html</td></tr>"
