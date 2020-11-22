@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::Layout(~{::section})">
+	
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<script language="JavaScript" type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script language="JavaScript" type="text/javascript" src="/js/jquery-ui-personalized-1.5.2.packed.js"></script>
+<script language="JavaScript" type="text/javascript" src="/js/sprinkle.js"></script>
+<title>Home page</title>
+
+
+
+</head>
+<body>
+	<section>
+		<div class="cr">
+
+
+			<h2>These are the concepts related</h2>
+			<h2>to the project</h2>
+
+		</div>
+		<div class="card text-center" id="div1">
+			<div class="card-header">Concepts</div>
+			<div id="d2" ></div>
+			<div id="d3" ></div>
+		</div>
+		<script th:inline="javascript">
+			
+				
+					
+				var k="KK";
+				/*<![CDATA[*/
+
+				var code = /*[[${concepts}]]*/'default';
+				var fname = /*[[${paths}]]*/'default';
+				
+				/*]]>*/
+				document.getElementById("d2").innerHTML=fname;
+				var codeAux = code.replaceAll('#LINE_BREAK#', '<br/>');
+				document.getElementById("d3").innerHTML=codeAux;
+		</script>
+	</section>
+
+</body>
+</html>

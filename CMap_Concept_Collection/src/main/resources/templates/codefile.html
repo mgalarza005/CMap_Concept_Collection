@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::Layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Home page</title>
+</head>
+<body>
+	<section>
+		<center>
+			<h1 id="h11"></h1>
+			<p>Mikel</p>
+			<div id="pepe">  </div>
+			
+		</center>
+		
+		<div class="jumbotron jumbotron-fluid">
+			<div id="d3" class="container"></div>
+				<div id="hio" class="display-4"></div>
+				
+			 	
+					<script th:inline="javascript"> 
+					document.getElementById("pepe").innerHTML = "<p>Galipot</p>";		
+					
+					/*<![CDATA[*/
+					var con = /*[[${content}]]*/'default';
+					var fname = /*[[${fileName}]]*/'default';
+					/*]]>*/
+					
+				
+					
+					document.getElementById("d3").innerHTML = "<p>"+ con+"</p>";
+					document.getElementById("hio").innerHTML = fname;
+					document.getElementById("h11").innerHTML = "CodeFile content";
+					</script>  
+				
+	
+		
+		</div>
+		
+
+	</section>
+</body>
+</html>

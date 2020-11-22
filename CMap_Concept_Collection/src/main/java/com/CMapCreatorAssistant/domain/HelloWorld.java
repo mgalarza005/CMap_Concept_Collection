@@ -5,9 +5,17 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
+import javax.servlet.Filter;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.boot.web.servlet.support.ErrorPageFilter;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,18 +23,31 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 public class HelloWorld {
-	private String concepts="";
-	private String paths="";
+	int au;
+	private static ModelAndView modelAndViewCon3;
+	private String concepts;
+	private String paths;
+	private String content="A";
+	private String filename="B";
 	//private String saludo;
-
+	
 	@Autowired
 	CMapRepository CMapRepository;
 
+	
+	
+	public HelloWorld() throws IOException {
+		super();
+		this.au = 0;
+		this.concepts = getConcepts();
+		this.paths = getPaths();
+	}
 
 	/*
 	@RequestMapping(value="")
@@ -36,34 +57,112 @@ public class HelloWorld {
 		return new ResponseEntity<String>(aux, HttpStatus.OK);
 	}
 	 */
-	public void getConcepts() throws IOException {
+	public String getConcepts() throws IOException {
 		String s;
+		String c="";
+		 
 		BufferedReader bf = new BufferedReader(new FileReader("C:\\Users\\MIKEL1\\git\\CMap_Concept_Collection\\.git\\CMap_Concept_Collection\\src\\main\\resources\\static\\files\\clusterakEginda.txt"));
 		while ((s = bf.readLine()) != null) {
-			concepts += s + "\n";
+			c += s + "\n";
 		}
 
 		bf.close();
+		return c;
 	}
-	public void getPaths() throws IOException {
+	
+	public String getPaths() throws IOException {
 		String s1;
+		String p="";
 		BufferedReader bf1 = new BufferedReader(new FileReader("C:\\Users\\MIKEL1\\git\\CMap_Concept_Collection\\.git\\CMap_Concept_Collection\\src\\main\\resources\\static\\files\\termTable.txt"));
 		while ((s1 = bf1.readLine()) != null) {
-			paths += s1 + "\n";
+			p += s1 + "\n";
 		}
 
 		bf1.close();
+		return p;
 	}
 	
 	
 	
 	
 	//Bakar bat lortzeko
+	/*
 	@RequestMapping("/codefiles/{fname}")
-	public List<Codefile> showFile(@PathVariable String fname){
-		return CMapRepository.findByfileNameContaining(fname);
+	public String showFile(@PathVariable String fname, Model model4) throws IOException{
+		Codefile cf = CMapRepository.findByfileNameContaining(fname);
+		this.content = proccesContent(cf.getContent());
+		this.fname=fname;
+		
+		System.out.println("Edukia: " + content);
+		
+		
+		return "redirect:code";
+		
+	}
+	**/
+	
+	//------------------
+	
+	@RequestMapping (value = "/codefiles/{fname}", method = RequestMethod.GET)
+	public ResponseEntity<Object> redirectToExternalUrl(@PathVariable String fname) throws URISyntaxException {
+	    
+		Codefile cf = CMapRepository.findByfileNameContaining(fname);
+		this.content = cf.getContent();
+		this.filename=fname;
+		
+		System.out.println("Edukia: " + content);
+		System.out.println("File-a: " + filename);
+		
+		
+		URI uri = new URI("/f");
+	    HttpHeaders httpHeaders = new HttpHeaders();
+	    httpHeaders.setLocation(uri);
+	    return new ResponseEntity<>(httpHeaders, HttpStatus.SEE_OTHER);
+	}
+	
+	/*
+	@RequestMapping("/codefile")
+	public ModelAndView CodeFile(Model model) throws IOException {
+		
+		model.addAttribute("title", "Code File");
+		model.addAttribute("content", content);
+		model.addAttribute("fileName", filename);
+		
+		
+		ModelAndView modelAndViewCon1 = new ModelAndView("codefile");
+		return modelAndViewCon1;
+	}*/
+	@RequestMapping("/concepts")
+	public ModelAndView Concepts(Model model1) throws IOException {
+		
+		model1.addAttribute("title", "Concepts");
+		model1.addAttribute("concepts", concepts);
+		model1.addAttribute("paths", paths);
+		
+		ModelAndView modelAndViewCon1 = new ModelAndView("concepts");
+		return modelAndViewCon1;
+	}
+	@RequestMapping("/f")
+	public ModelAndView FC(Model model1) throws IOException {
+		
+		
+		System.out.println("Edukia: " + content);
+		System.out.println("File-a: " + filename);
+		
+		
+		model1.addAttribute("title", "Concepts");
+		model1.addAttribute("concepts", content);
+		model1.addAttribute("paths", filename);
+		
+		ModelAndView modelAndViewCon= new ModelAndView("f");
+		return modelAndViewCon;
 	}
 
+
+	private String proccesContent(String content) {
+		String c=content.replaceAll("#LINE_BREAK#", "\n");
+		return c;
+	}
 
 	@RequestMapping("/codefiles")
 	public List<Codefile> codefiles(){
@@ -77,16 +176,27 @@ public class HelloWorld {
 		return modelAndView;
 	}
 
-	@RequestMapping("/concepts")
-	public ModelAndView About(Model model) throws IOException {
-		getConcepts();
-		getPaths();
+	
+	@RequestMapping("/cloud")
+	public ModelAndView Cloud(Model model2) throws IOException {
+		//getConcepts();
+		//getPaths();
 
-		model.addAttribute("title", "Concepts");
-		model.addAttribute("concepts", concepts);
-		model.addAttribute("paths", paths);
+		model2.addAttribute("title", "Concept Cloud");
+		model2.addAttribute("concepts", concepts);
+		//model.addAttribute("paths", paths);
 		
-		ModelAndView modelAndViewCon = new ModelAndView("concepts");
-		return modelAndViewCon;
+		ModelAndView modelAndViewCon2 = new ModelAndView("cloud");
+		return modelAndViewCon2;
+	}
+	@RequestMapping("/about")
+	public ModelAndView About(Model model3) throws IOException {
+		//getConcepts();
+		model3.addAttribute("concepts", concepts);
+		modelAndViewCon3 = new ModelAndView("about");
+		return modelAndViewCon3;
+		
+				
+		
 	}
 }

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::Layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Home page</title>
+
+</head>
+<body>
+	<section>
+
+		<div id="d">
+			
+			<div id="div" class="tagcloud06">
+
+
+
+				<script th:inline="javascript">
+					var txt = " ";
+					if (txt == " ") {
+						var txt = "<ul>";
+
+						/*<![CDATA[*/
+
+						var terms = /*[[${concepts}]]*/'default';
+
+						/*]]>*/
+						var lines = terms.split('\n');
+						
+						for (var i = 0; i < lines.length - 1; i++) {
+							var concept = lines[i].split(":");
+							var j = i + 1;
+							txt += "<li><a href='http://localhost:9898/concepts#multiCollapseExample"
+									+ j.toString()
+									+ "' role='button' "
+									+ "aria-expanded='false' aria-controls='multiCollapseExample"
+									+ j.toString()
+									+ "'> "
+									+ concept[0]
+									+ "</a></li>"
+
+						}
+						txt += "</ul>";
+
+						document.getElementById("div").innerHTML = txt;
+						
+
+					}
+				</script>
+
+
+				<script th:src="@{/js/cloud.js}"></script>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
+
+
+
+
+
+
+

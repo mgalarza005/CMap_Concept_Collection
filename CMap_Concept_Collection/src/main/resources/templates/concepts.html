@@ -1,10 +1,18 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
 	th:replace="base::Layout(~{::section})">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<script language="JavaScript" type="text/javascript"
+	src="/js/jquery-1.2.6.min.js"></script>
+<script language="JavaScript" type="text/javascript"
+	src="/js/jquery-ui-personalized-1.5.2.packed.js"></script>
+<script language="JavaScript" type="text/javascript"
+	src="/js/sprinkle.js"></script>
 <title>Home page</title>
 
 
@@ -21,6 +29,7 @@
 		</div>
 		<div class="card text-center" id="div1">
 			<div class="card-header">Concepts</div>
+			<div id="d2"></div>
 
 		</div>
 		<script th:inline="javascript">
@@ -29,79 +38,81 @@
 			/*<![CDATA[*/
 
 			var terms = /*[[${concepts}]]*/'default';
-			var paths =/*[[${paths}]]*/'default';
+			var paths = /*[[${paths}]]*/'default';
 
 			/*]]>*/
-			function getFile(term1){
+			function getFile(term1) {
 				var lines = paths.split('\n');
 				for (var i = 0; i < lines.length - 1; i++) {
-					if (lines[i].includes(term1)){
+					if (lines[i].includes(term1)) {
 						var result = "<ul>";
-						var aux="";
-						var ss=lines[i].split("[");
+						var aux = "";
+						var ss = lines[i].split("[");
 						//console.log(ss);
 						var ss1 = ss[1].split(";");
 						//console.log(ss1);
 						//console.log("Emaitza: " + ss1[0].split(" "));
-						
-						for (var j=0; j<ss1.length-1;j++) {
+
+						for (var j = 0; j < ss1.length - 1; j++) {
 							var ss2 = ss1[j].split(" ");
 							console.log("Emaitza: " + ss2);
 							var ss3 = ss2[0].split(":");
-							aux +="<li><a class='linka' href='http://localhost:9898/codefiles/"+ss3[0]+"'>"+ss3[0]+"</a></li>";
-							
+							aux += "<li><a class='linka' href='http://localhost:9898/codefiles/"+ss3[0]+"'>"
+									+ ss3[0] + "</a></li>";
+
 						}
 						//console.log("Emaitza: " + ss1[0].split(" "));
-						var ss2 = ss1[ss1.length-1].split(" ");
+						var ss2 = ss1[ss1.length - 1].split(" ");
 						var ss3 = ss2[0].split(":");
-						
-						aux +="<li><a class='linka' href='http://localhost:9898/codefiles/"+ss3[0]+"'>"+ss3[0]+"</a></li>";
+
+						aux += "<li><a class='linka' href='http://localhost:9898/codefiles/"+ss3[0]+"'>"
+								+ ss3[0] + "</a></li>";
 						result += aux;
 						result += "</ul>";
-						return(result);
-					}}		
+						return (result);
+					}
+				}
 			}
-			function getPath(term1){
+			function getPath(term1) {
 				var result = "<ul>";
-				var aux="";
+				var aux = "";
 				var lines = paths.split('\n');
 				for (var i = 0; i < lines.length - 1; i++) {
-					if (lines[i].includes(term1)){
-						var ss=lines[i].split("[");
+					if (lines[i].includes(term1)) {
+						var ss = lines[i].split("[");
 						//console.log(ss);
 						var ss1 = ss[1].split(";");
 						//console.log(ss1);
 						//console.log("Emaitza: " + ss1[0].split(" "));
-						
-						for (var j=0; j<ss1.length-1;j++) {
+
+						for (var j = 0; j < ss1.length - 1; j++) {
 							var ss2 = ss1[j].split(" ");
 							console.log(ss2);
 							var ss3 = ss2[1].split("]");
-							aux +="<li>"+ss3[0]+"</li>";
+							aux += "<li>" + ss3[0] + "</li>";
 						}
 						//console.log("Emaitza: " + ss1[0].split(" "));
-						var ss2 = ss1[ss1.length-1].split(" ");
+						var ss2 = ss1[ss1.length - 1].split(" ");
 						var ss3 = ss2[1].split("]");
-						aux +="<li>"+ss3[0]+"</li>";
+						aux += "<li>" + ss3[0] + "</li>";
 						result += aux;
 						result += "</ul>";
-						return(result);
-						
-						
-					}}		
+						return (result);
+
+					}
+				}
 			}
-			
+
 			//console.log("kontzeptuaaaaaak \n" + terms);
 			//console.log("Paths \n " + paths);
 			//By lines
 			var lines = terms.split('\n');
-
-			for (var i = 0; i < lines.length - 1; i++) {
+			//console.log("Luzeera: " + lines.length)
+			//txt += "<ul class='list-group list-group-flush'"
+			luzera = lines.length;
+			for (var i = 0; i < luzera - 1; i++) {
 				var concept = lines[i].split(":");
 				var j = i + 1;
-				//console.log(j.toString());
-				var ul = document.createElement("ul");
-				ul.setAttribute("class", "list-group list-group-flush");
 
 				txt += "<li class='list-group-item'>"
 				txt += "<p>"
@@ -121,21 +132,19 @@
 				var a = "<table class='table'>"
 						+ "<thead class='thead-dark'><tr><th scope='col'>#</th><th scope='col'>Term</th><th scope='col'>Files this term appears</th><th scope='col'>Paths</th></tr>"
 						+ "</thead><tbody>";
-				for(var k=0; k<terms.length; k++) {
-					var t= k+1;
-					var term1=terms[k]
-					a+="<tr><th scope='row'>"+t.toString()+"</th><td>"
-					+   term1+
-					
-					"</td><td  align='center'> "+
-					
-					getFile(term1) +
-					
-					"</td><td align='center'>"+ 
-					getPath(term1)
+				for (var k = 0; k < terms.length; k++) {
+					var t = k + 1;
+					var term1 = terms[k]
+					a += "<tr><th scope='row'>" + t.toString() + "</th><td>"
+							+ term1 +
+
+							"</td><td  align='center'> " +
+
+							getFile(term1) +
+
+							"</td><td align='center'>" + getPath(term1)
 					"</td></tr>";
 				}
-		
 
 				a += "</tbody></table>";
 
@@ -146,7 +155,8 @@
 
 			}
 			txt += "</li>";
-			document.getElementById("div1").innerHTML = txt;
+
+			document.getElementById("d2").innerHTML = txt;
 		</script>
 	</section>
 
