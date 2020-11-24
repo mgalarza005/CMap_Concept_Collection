@@ -13,7 +13,7 @@
 	src="/js/jquery-ui-personalized-1.5.2.packed.js"></script>
 <script language="JavaScript" type="text/javascript"
 	src="/js/sprinkle.js"></script>
-<title>Home page</title>
+
 
 
 
@@ -28,7 +28,9 @@
 
 		</div>
 		<div class="card text-center" id="div1">
-			<div class="card-header">Concepts</div>
+			<div class="card-header" th:text ="#{navbar.concepts}"></div>
+			<p th:text ='#{navbar.term}'></p>
+			
 			<div id="d2"></div>
 
 		</div>
@@ -121,8 +123,8 @@
 						+ "<p><a class='btn btn-primary' data-toggle='collapse' href='#multiCollapseExample"
 						+ j.toString()
 						+ "' role='button' "
-						+ "aria-expanded='false' aria-controls='multiCollapseExample"
-						+ j.toString() + "'>Open concept</a> </p>";
+						+ "aria-expanded='false'  th:text ='#{navbar.openconcept}' aria-controls='multiCollapseExample"
+						+ j.toString() + "'></a> </p>";
 
 				//console.log("Terminoak: " + concept[1]);
 
@@ -130,7 +132,7 @@
 				//console.log("TermsSplit: " + terms);
 				//Table inside each concept
 				var a = "<table class='table'>"
-						+ "<thead class='thead-dark'><tr><th scope='col'>#</th><th scope='col'>Term</th><th scope='col'>Files this term appears</th><th scope='col'>Paths</th></tr>"
+						+ "<thead class='thead-dark'><tr><th scope='col'>#</th><th scope='col'><div><p th:text ='#{navbar.term}'></p></div></th><th scope='col'><div> <p th:text ='#{navbar.files}'></p></div></th><th scope='col'><div> <p th:text ='#{navbar.paths}'></p></div></th></tr>"
 						+ "</thead><tbody>";
 				for (var k = 0; k < terms.length; k++) {
 					var t = k + 1;
