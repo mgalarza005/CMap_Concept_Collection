@@ -3,7 +3,7 @@
 	th:replace="base::Layout(~{::section})">
 	
 <head>
-
+<link  rel="stylesheet" th:href="@{/css/style.css}" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -17,17 +17,14 @@
 </head>
 <body>
 	<section>
-		<div class="cr">
-
-
-			<h2>These are the concepts related</h2>
-			<h2>to the project</h2>
-
-		</div>
 		<div class="card text-center" id="div1">
-			<div class="card-header">Concepts</div>
-			<div id="d2" ></div>
-			<div id="d3" ></div>
+			<div class="card-header">Code</div>
+			<div id="d2" >
+			
+			</div>
+			<div id="d3" >
+				
+			</div>
 		</div>
 		<script th:inline="javascript">
 			
@@ -40,8 +37,16 @@
 				var fname = /*[[${paths}]]*/'default';
 				
 				/*]]>*/
-				document.getElementById("d2").innerHTML=fname;
-				var codeAux = code.replaceAll('#LINE_BREAK#', '<br/>');
+				var codeAux="";
+				document.getElementById("d2").innerHTML="<p id='p1' class='p1'>"+fname+"</p>";
+				
+				if(codeAux.includes("html")){
+					codeAux = code.replaceAll('#LINE_BREAK#', '\n');
+					codeAux = code.replaceAll('<', '&lt;');
+					
+				}else{
+					codeAux = code.replaceAll('#LINE_BREAK#', '<br/>');
+				}
 				document.getElementById("d3").innerHTML=codeAux;
 		</script>
 	</section>

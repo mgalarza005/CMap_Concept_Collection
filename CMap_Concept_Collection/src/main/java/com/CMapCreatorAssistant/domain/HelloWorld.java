@@ -8,10 +8,12 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.Filter;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.servlet.WebMvcProperties.LocaleResolver;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.support.ErrorPageFilter;
 import org.springframework.context.annotation.Bean;
@@ -26,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 @RestController
 public class HelloWorld {
@@ -169,7 +172,7 @@ public class HelloWorld {
 		return CMapRepository.findAll();
 	}
 
-	@RequestMapping("/")
+	@RequestMapping("/home")
 	public ModelAndView home(Model model) throws IOException {
 		model.addAttribute("title", "Home page");
 		ModelAndView modelAndView = new ModelAndView("home");
@@ -199,4 +202,6 @@ public class HelloWorld {
 				
 		
 	}
+	
+	
 }
