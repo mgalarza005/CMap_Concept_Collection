@@ -23,18 +23,20 @@
 		<div class="cr">
 
 
-			<h2 th:text ='#{navbar.text1}'></h2>
-			<h2 th:text ='#{navbar.text2}'></h2>
+			<h2 th:text='#{navbar.text1}'></h2>
+			<h2 th:text='#{navbar.text2}'></h2>
 
 		</div>
 		<div class="card text-center" id="div1">
-			<div class="card-header" ><p th:text ="#{navbar.concepts}"></p></div>
-			<div id="hj" class="card-header">
-				<p class="prp" th:text ="#{navbar.term}" ></p> 
-				<p class="prp" th:text ="#{navbar.paths}"></p>
-				<p class="prp" th:text ="#{navbar.files}"></p>
+			<div class="card-header">
+				<p th:text="#{navbar.concepts}"></p>
 			</div>
-					
+			<div id="hj" class="card-header">
+				<p class="prp" th:text="#{navbar.term}"></p>
+				<p class="prp" th:text="#{navbar.files}"></p>
+				<p class="prp" th:text="#{navbar.paths}"></p>
+			</div>
+
 			<div id="d2"></div>
 
 		</div>
@@ -43,8 +45,22 @@
 			var rr = document.getElementById("hj").innerHTML;
 			console.log(rr);
 			var e = rr.split('<p class="prp">');
-			var l=e[1].split('<');
-			var w =l[0];
+			var l1=e[1].split('<');
+			console.log("MIkel" + e.length);
+			for(var s=0; s<e.length ; s++){
+				
+				console.log("LL:  " +e[s]);
+			}
+			var w1 =l1[0];
+			
+			var l2=e[2].split('<');
+			var w2 =l2[0];
+			
+			var l3=e[3].split('<');
+			var w3 =l3[0];
+		
+			
+			
 			
 
 			/*<![CDATA[*/
@@ -144,7 +160,7 @@
 				//console.log("TermsSplit: " + terms);
 				//Table inside each concept
 				var a = "<table class='table'>"
-						+ "<thead class='thead-dark'><tr><th scope='col'>#</th><th scope='col'><div><p th:text ='#{navbar.term}'>"+w+"</p></div></th><th scope='col'><div> <p th:text ='#{navbar.files}'></p></div></th><th scope='col'><div> <p th:text ='#{navbar.paths}'></p></div></th></tr>"
+						+ "<thead class='thead-dark'><tr><th scope='col'>#</th><th scope='col'><div><p th:text ='#{navbar.term}'>"+w1+"</p></div></th><th scope='col'><div> <p th:text ='#{navbar.files}'>"+w2+"</p></div></th><th scope='col'><div> <p th:text ='#{navbar.paths}'>"+w3+"</p></div></th></tr>"
 						+ "</thead><tbody>";
 				for (var k = 0; k < terms.length; k++) {
 					var t = k + 1;
