@@ -3,7 +3,7 @@
 	th:replace="base::Layout(~{::section})">
 
 <head>
-
+<link rel="stylesheet" th:href="@{/css/style.css}" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -23,19 +23,29 @@
 		<div class="cr">
 
 
-			<h2>These are the concepts related</h2>
-			<h2>to the project</h2>
+			<h2 th:text ='#{navbar.text1}'></h2>
+			<h2 th:text ='#{navbar.text2}'></h2>
 
 		</div>
 		<div class="card text-center" id="div1">
-			<div class="card-header" th:text ="#{navbar.concepts}"></div>
-			<p th:text ='#{navbar.term}'></p>
-			
+			<div class="card-header" ><p th:text ="#{navbar.concepts}"></p></div>
+			<div id="hj" class="card-header">
+				<p class="prp" th:text ="#{navbar.term}" ></p> 
+				<p class="prp" th:text ="#{navbar.paths}"></p>
+				<p class="prp" th:text ="#{navbar.files}"></p>
+			</div>
+					
 			<div id="d2"></div>
 
 		</div>
 		<script th:inline="javascript">
 			var txt = "";
+			var rr = document.getElementById("hj").innerHTML;
+			console.log(rr);
+			var e = rr.split('<p class="prp">');
+			var l=e[1].split('<');
+			var w =l[0];
+			
 
 			/*<![CDATA[*/
 
@@ -89,7 +99,7 @@
 
 						for (var j = 0; j < ss1.length - 1; j++) {
 							var ss2 = ss1[j].split(" ");
-							console.log(ss2);
+							//console.log(ss2);
 							var ss3 = ss2[1].split("]");
 							aux += "<li>" + ss3[0] + "</li>";
 						}
@@ -116,15 +126,17 @@
 				var concept = lines[i].split(":");
 				var j = i + 1;
 
-				txt += "<li class='list-group-item'>"
+				txt += "<li class='list-group-item'>" 
 				txt += "<p>"
 						+ concept[0]
 						+ "</p>"
 						+ "<p><a class='btn btn-primary' data-toggle='collapse' href='#multiCollapseExample"
 						+ j.toString()
 						+ "' role='button' "
-						+ "aria-expanded='false'  th:text ='#{navbar.openconcept}' aria-controls='multiCollapseExample"
-						+ j.toString() + "'></a> </p>";
+						+ "aria-expanded='false'   aria-controls='multiCollapseExample"
+						+ j.toString() + "'><svg width='1em' height='1em' viewBox='0 0 16 16' class='bi bi-arrows-angle-expand' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>" +
+						  "<path fill-rule='evenodd' d='M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707z'/>" +
+							  "</svg></a> </p>";
 
 				//console.log("Terminoak: " + concept[1]);
 
@@ -132,7 +144,7 @@
 				//console.log("TermsSplit: " + terms);
 				//Table inside each concept
 				var a = "<table class='table'>"
-						+ "<thead class='thead-dark'><tr><th scope='col'>#</th><th scope='col'><div><p th:text ='#{navbar.term}'></p></div></th><th scope='col'><div> <p th:text ='#{navbar.files}'></p></div></th><th scope='col'><div> <p th:text ='#{navbar.paths}'></p></div></th></tr>"
+						+ "<thead class='thead-dark'><tr><th scope='col'>#</th><th scope='col'><div><p th:text ='#{navbar.term}'>"+w+"</p></div></th><th scope='col'><div> <p th:text ='#{navbar.files}'></p></div></th><th scope='col'><div> <p th:text ='#{navbar.paths}'></p></div></th></tr>"
 						+ "</thead><tbody>";
 				for (var k = 0; k < terms.length; k++) {
 					var t = k + 1;
@@ -164,3 +176,7 @@
 
 </body>
 </html>
+
+
+
+

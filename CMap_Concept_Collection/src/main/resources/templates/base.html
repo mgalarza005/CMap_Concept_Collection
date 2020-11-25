@@ -44,7 +44,7 @@
 <body>
 	<!-- Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-custom bg-ligth mb-3">
-		<th:a th:class="navbar-brand" href="/" th:text="#{base.title}"></th:a>
+		<th:a th:class="navbar-brand" th:href="home" th:text="#{base.title}"></th:a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -54,13 +54,13 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="/home" th:text ="#{navbar.home}">
+				<li class="nav-item active"><a class="nav-link" th:href="home" th:text ="#{navbar.home}">
 						<span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item"><a class="nav-link" th:href="concepts" th:text ="#{navbar.concepts}">
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="cloud" th:text ="#{navbar.cloud}"></a></li>
-				<li class="nav-item"><a class="nav-link" href="f">F</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="cloud" th:text ="#{navbar.cloud}"></a></li>
+				
 
 
 			</ul>
