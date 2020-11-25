@@ -22,11 +22,12 @@
 	    $("#locales").change(function () {
 	        var selectedOption = $('#locales').val();
 	        if (selectedOption != ''){
-	        	var k = 0;
-	        	if (k==0){
-	        		var h = window.location.href;
+	        	var h = window.location.href;
+	        	if(h.includes('?')){
+	        		var haux = h.split('?');
+	        		console.log(haux[0]);
+	        		h = haux[0];
 	        	}
-	        	k++;
 	        	
 	        	console.log = h + "?lang="+selectedOption;
 	        	window.location.replace(h + '?lang=' + selectedOption);
@@ -66,7 +67,7 @@
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
 				<input class="form-control mr-sm-2" type="search"
-					placeholder="#{navbar.search}" aria-label="#{navbar.search}">
+					th:placeholder="#{navbar.search}" th:aria-label="#{navbar.search}">
 				<button class="btn btn-outline-success my-2 my-sm-0" type="submit" th:text ="#{navbar.search}"></button>
 			</form>
 			<span th:text="#{lang.change}" style="color:white"></span>: <select id="locales">
