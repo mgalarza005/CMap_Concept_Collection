@@ -36,8 +36,8 @@ public class HelloWorld {
 	private static ModelAndView modelAndViewCon3;
 	private String concepts;
 	private String paths;
-	private String content="A";
-	private String filename="B";
+	private String content;
+	private String filename;
 	//private String saludo;
 	
 	@Autowired
@@ -64,7 +64,7 @@ public class HelloWorld {
 		String s;
 		String c="";
 		 
-		BufferedReader bf = new BufferedReader(new FileReader("C:\\Users\\MIKEL1\\git\\CMap_Concept_Collection\\.git\\CMap_Concept_Collection\\src\\main\\resources\\static\\files\\clusterakEginda.txt"));
+		BufferedReader bf = new BufferedReader(new FileReader("C:\\Users\\MIKEL1\\git\\CMap_Concept_Collection\\.git\\CMap_Concept_Collection\\src\\main\\resources\\static\\files\\clusterDone.txt"));
 		while ((s = bf.readLine()) != null) {
 			c += s + "\n";
 		}
