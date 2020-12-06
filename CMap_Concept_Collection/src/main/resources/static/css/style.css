@@ -16,6 +16,17 @@ body {
 	color: red;
 }
 
+/* CLOUD 
+
+html, body, #container {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+*/
+
+
 .navbar-custom .navbar-brand {
 	color: white;
 	font-size: 250%;

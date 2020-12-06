@@ -189,7 +189,7 @@ public class HelloWorld {
 		model2.addAttribute("concepts", concepts);
 		//model.addAttribute("paths", paths);
 		
-		ModelAndView modelAndViewCon2 = new ModelAndView("cloud");
+		ModelAndView modelAndViewCon2 = new ModelAndView("conceptC");
 		return modelAndViewCon2;
 	}
 	@RequestMapping("/about")
