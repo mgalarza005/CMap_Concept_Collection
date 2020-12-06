@@ -35,8 +35,8 @@
 				<p class="prp" th:text="#{navbar.term}"></p>
 				<p class="prp" th:text="#{navbar.files}"></p>
 				<p class="prp" th:text="#{navbar.paths}"></p>
-				<p class="prp" th:text="#{navbar.openconcept}"></p>
-				
+				<p class="prp" th:text="#{navbar.weight}"></p>
+				<p class="prp" th:text="#{navbar.apparition}"></p>
 			</div>
 
 			<div id="d2"></div>
@@ -45,10 +45,10 @@
 		<script th:inline="javascript">
 			var txt = "";
 			var rr = document.getElementById("hj").innerHTML;
-			console.log(rr);
+			//console.log(rr);
 			var e = rr.split('<p class="prp">');
 			var l1=e[1].split('<');
-			console.log("MIkel" + e.length);
+			//console.log("MIkel" + e.length);
 			
 			var w1 =l1[0];
 			
@@ -61,6 +61,8 @@
 			var l4=e[4].split('<');
 			var w4 =l4[0];
 			
+			var l5=e[5].split('<');
+			var w5 =l5[0];
 			
 
 			/*<![CDATA[*/
@@ -101,6 +103,26 @@
 					}
 				}
 			}
+			function getApparition(term1){
+				var lines = paths.split('\n');
+				for (var i = 0; i < lines.length - 1; i++) {
+					if (lines[i].includes(term1)) {
+						//console.log("Line :"+ lines[i]);
+						var ss = lines[i].split("kopurua:");
+						var ss1 = ss[1].split("   ");
+						//console.log(ss1[1]);
+						return ss1[1];
+					}
+					
+				}
+				
+			}
+			
+			function getAllWeights(){
+				
+				return "45W";
+			}
+			
 			function getPath(term1) {
 				var result = "<ul>";
 				var aux = "";
@@ -143,14 +165,11 @@
 				var j = i + 1;
 
 				txt += "<li class='list-group-item'>" 
-				txt += "<p>"
-						+ concept[0]
-						+ "</p>"
-						+ "<p><a class='btn btn-primary' data-toggle='collapse' href='#multiCollapseExample"
+				txt += "<p><a class='btn btn-primary' data-toggle='collapse' href='#multiCollapseExample"
 						+ j.toString()
 						+ "' role='button' "
 						+ "aria-expanded='false'   aria-controls='multiCollapseExample"
-						+ j.toString() + "'>"+w4+"</a> </p>";
+						+ j.toString() + "'>"+concept[0]+"</a> </p><p>"+w4+": "+getAllWeights()+"</p>";
 
 				//console.log("Terminoak: " + concept[1]);
 
@@ -158,7 +177,13 @@
 				//console.log("TermsSplit: " + terms);
 				//Table inside each concept
 				var a = "<table class='table'>"
-						+ "<thead class='thead-dark'><tr><th scope='col'>#</th><th scope='col'><div><p th:text ='#{navbar.term}'>"+w1+"</p></div></th><th scope='col'><div> <p th:text ='#{navbar.files}'>"+w2+"</p></div></th><th scope='col'><div> <p th:text ='#{navbar.paths}'>"+w3+"</p></div></th></tr>"
+						+ "<thead class='thead-dark'><tr><th scope='col'>#</th>"
+						+"<th scope='col'><div><p>"+w1+"</p></div></th>"
+						+"<th scope='col'><div><p>"+w2+"</p></div></th>"
+						+"<th scope='col'><div> <p>"+w3+"</p></div></th>"
+						+"<th scope='col'><div> <p>"+w5+"</p></div></th>"+
+						
+						"</tr>"
 						+ "</thead><tbody>";
 				for (var k = 0; k < terms.length; k++) {
 					var t = k + 1;
@@ -170,7 +195,8 @@
 
 							getFile(term1) +
 
-							"</td><td align='center'>" + getPath(term1)
+							"</td><td align='center'>" + getPath(term1) +
+					"</td><td align='center'>" + getApparition(term1) +
 					"</td></tr>";
 				}
 
