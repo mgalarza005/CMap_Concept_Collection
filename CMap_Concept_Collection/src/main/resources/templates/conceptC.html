@@ -50,11 +50,11 @@ html, body, #container {
 			/*<![CDATA[*/
 
 			var data1 = /*[[${weigths}]]*/'default';
- 
+
 			/*]]>*/
 			var data=[]
 			var lines = data1.split('\n');
-			for (var i = 0; i < lines.length; i++) {
+			for (var i = 0; i < lines.length-1; i++) {
 				var values = lines[i].split(" ");
 				data.push({"x" : values[0], "value" : values[1]})
 			}
@@ -62,13 +62,13 @@ html, body, #container {
 			
 			anychart.onDocumentReady(function() {
 
-				console.log("JSON" + JSON.stringify(data));
-				
+			
+
 				// create a tag cloud chart
 				var chart = anychart.tagCloud(data);
 
 				// set the chart title
-				chart.title('Concepts')
+				chart.title('CONCEPT CLOUD')
 
 				// set array of angles, by which words will be placed
 				chart.angles([ 0 ])
