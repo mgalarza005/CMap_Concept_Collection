@@ -38,6 +38,7 @@ public class HelloWorld {
 	private String paths;
 	private String content;
 	private String filename;
+	private String weigths;
 	//private String saludo;
 	
 	@Autowired
@@ -50,6 +51,7 @@ public class HelloWorld {
 		this.au = 0;
 		this.concepts = getConcepts();
 		this.paths = getPaths();
+		this.weigths = getWeigths();
 	}
 
 	/*
@@ -175,6 +177,7 @@ public class HelloWorld {
 	@RequestMapping("/home")
 	public ModelAndView home(Model model) throws IOException {
 		model.addAttribute("title", "Home page");
+		
 		ModelAndView modelAndView = new ModelAndView("home");
 		return modelAndView;
 	}
@@ -187,7 +190,7 @@ public class HelloWorld {
 
 		model2.addAttribute("title", "Concept Cloud");
 		model2.addAttribute("concepts", concepts);
-		//model.addAttribute("paths", paths);
+		model2.addAttribute("weigths", weigths);
 		
 		ModelAndView modelAndViewCon2 = new ModelAndView("conceptC");
 		return modelAndViewCon2;
@@ -200,6 +203,56 @@ public class HelloWorld {
 		return modelAndViewCon3;
 		
 				
+		
+	}
+	
+	
+	public String getWeigths() throws IOException {
+		String jsonWeigths="";
+		String p="";
+		 
+		String s1;
+		BufferedReader bf1 = new BufferedReader(new FileReader("C:\\Users\\MIKEL1\\git\\CMap_Concept_Collection\\.git\\CMap_Concept_Collection\\src\\main\\resources\\static\\files\\clusterDone.txt"));
+		while ((s1 = bf1.readLine()) != null) {
+			Integer conceptWeigth=0;
+			String concept=null;
+			String[] aux = s1.split(":");
+			concept = aux[0];
+			//System.out.println(concept);
+			
+			//System.out.println(aux[1]);
+			String[] terms = aux[1].split(", ");
+			
+			for(int i=0; i<terms.length; i++) {
+				conceptWeigth += getTermWeight(terms[i]);
+				
+			}
+			jsonWeigths += concept.replace("*", "")+" "+conceptWeigth+"\n";
+
+		}
+		
+		//System.out.println(jsonWeigths);
+		bf1.close();
+		return jsonWeigths;
+		
+	}
+
+	private static Integer getTermWeight(String term) throws IOException {
+		
+		BufferedReader bf2 = new BufferedReader(new FileReader("C:\\Users\\MIKEL1\\git\\CMap_Concept_Collection\\.git\\CMap_Concept_Collection\\src\\main\\resources\\static\\files\\termTable.txt"));
+		String s2;
+		String[] aux1=null;
+		while ((s2 = bf2.readLine()) != null) {
+			if (s2.contains(term)) {
+				String[] aux= s2.split("kopurua:");
+				aux1 = aux[1].split("   ");
+				
+				
+			}
+		}
+		return Integer.parseInt(aux1[1]);
+		
+		
 		
 	}
 	

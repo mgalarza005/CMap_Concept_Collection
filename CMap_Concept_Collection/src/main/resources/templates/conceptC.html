@@ -38,6 +38,7 @@ html, body, #container {
 <body>
 	<section>
 		<div id="container"></div>
+		<div id="g"></div>
 		<script th:src="@{/js/anychart-base.min.js}"></script>
 		<script th:src="@{/js/anychart-tag-cloud.min.js}"></script>
 
@@ -45,44 +46,43 @@ html, body, #container {
 		<!-- <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
   <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>  -->
 
-		<script type="text/javascript">anychart.onDocumentReady(function () {
+		<script th:inline="javascript">
+			/*<![CDATA[*/
 
-  var data = [
-    {"x": "Discovery", "value": 206 },
-    {"x": "Development", "value": 111},
-    {"x": "Work", "value": 95},
-    {"x": "Theory", "value": 67},
-    {"x": "Contributions", "value": 66},
-    {"x": "Structure", "value": 54},
-    {"x": "Recognition", "value": 52},
-    {"x": "Economic", "value": 47},
-    {"x": "Chemical", "value": 46},
-    {"x": "Analysis", "value": 39},
-    {"x": "Pioneering", "value": 37},
-    {"x": "Methods", "value": 33},
-    {"x": "Synthesis", "value": 33},
-    {"x": "Human", "value": 31},
-    {"x": "Cell", "value": 30}
-  ];
+			var data1 = /*[[${weigths}]]*/'default';
 
-  // create a tag cloud chart
-  var chart = anychart.tagCloud(data);
- 
-  // set the chart title
-  chart.title('Concepts')
+			/*]]>*/
+			var data=[]
+			var lines = data1.split('\n');
+			for (var i = 0; i < lines.length; i++) {
+				var values = lines[i].split(" ");
+				data.push({"x" : values[0], "value" : values[1]})
+			}
+			
+			
+			anychart.onDocumentReady(function() {
 
-  // set array of angles, by which words will be placed
-  chart.angles([0])
-  // enable color range
- // chart.colorRange(true);
-  // set color range length
-  chart.colorRange().length('100%');
+				console.log("JSON" + JSON.stringify(data));
+				
+				// create a tag cloud chart
+				var chart = anychart.tagCloud(data);
 
-  // display chart
-  chart.container("container");
-  chart.draw();
-  
-});</script>
+				// set the chart title
+				chart.title('Concepts')
+
+				// set array of angles, by which words will be placed
+				chart.angles([ 0 ])
+				// enable color range
+				// chart.colorRange(true);
+				// set color range length
+				chart.colorRange().length('100%');
+
+				// display chart
+				chart.container("container");
+				chart.draw();
+
+			});
+		</script>
 	</section>
 </body>
 </html>
