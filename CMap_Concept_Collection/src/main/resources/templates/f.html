@@ -1,54 +1,115 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
 	th:replace="base::Layout(~{::section})">
-	
+
 <head>
-<link  rel="stylesheet" th:href="@{/css/style.css}" />
+<link rel="stylesheet" th:href="@{/css/style.css}" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<script language="JavaScript" type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
-<script language="JavaScript" type="text/javascript" src="/js/jquery-ui-personalized-1.5.2.packed.js"></script>
-<script language="JavaScript" type="text/javascript" src="/js/sprinkle.js"></script>
-<title>Home page</title>
-
-
+<script language="JavaScript" type="text/javascript"
+	src="/js/jquery-1.2.6.min.js"></script>
+<script language="JavaScript" type="text/javascript"
+	src="/js/jquery-ui-personalized-1.5.2.packed.js"></script>
+<script language="JavaScript" type="text/javascript"
+	src="/js/sprinkle.js"></script>
+<title>Code file</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 <body>
 	<section>
 		<div class="card text-left" id="div1">
 			<div class="card-header">Code</div>
-			<div id="d2" >
-			
-			</div>
-			<div id="d3" >
-				
-			</div>
+			<div id="d2"></div>
+			<div id="d3"></div>
+			<code id="demo" style="text-indent: 40px"></code>
+			<span class="showText" id="dem"></span>
+			<pre id="out"></pre>
 		</div>
-		<script th:inline="javascript">
-			
-				
-					
-				var k="KK";
-				/*<![CDATA[*/
 
-				var code = /*[[${concepts}]]*/'default';
-				var fname = /*[[${paths}]]*/'default';
-				
-				/*]]>*/
-				var codeAux="";
-				document.getElementById("d2").innerHTML="<p id='p1' class='p1'>"+fname+"</p>";
-				
-				if(codeAux.includes("html")){
-					codeAux = code.replaceAll('#LINE_BREAK#', '\n');
-					codeAux = code.replaceAll('<', '&lt;');
-					
-				}else{
-					codeAux = code.replaceAll('#LINE_BREAK#', '<br/>');
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+
+			var code = /*[[${concepts}]]*/'default';
+			var fname = /*[[${paths}]]*/'default';
+
+			/*]]>*/
+			
+			var codeAux = "";
+			document.getElementById("d2").innerHTML = "<p id='p1' class='p1'>"
+					+ fname + "</p>";
+			
+			if (codeAux.includes("html")) {
+				codeAux = code.replaceAll('#LINE_BREAK#', '\n');
+				codeAux = code.replaceAll('<', '&lt;');
+
+			} else {
+
+				codeAux = code.replaceAll('#LINE_BREAK#', '\n');
+				//codeAux +="MMMMMMMMMMMMMMMMMMMMMMMMMMM";
+			}
+			
+			//document.getElementById("dem").innerHTML = codeAux;*/
+			
+			function process(str) {
+				  var div = document.createElement('div');
+				  div.innerHTML = str.trim();
+
+				  return format(div, 0).innerHTML;
 				}
-				document.getElementById("d3").innerHTML=codeAux;
+
+				function format(node, level) {
+				  var indentBefore = new Array(level++ + 1).join('  '),
+				    indentAfter = new Array(level - 1).join('  '),
+				    textNode;
+
+				  for (var i = 0; i < node.children.length; i++) {
+				    textNode = document.createTextNode('\n' + indentBefore);
+				    node.insertBefore(textNode, node.children[i]);
+
+				    format(node.children[i], level);
+
+				    if (node.lastElementChild == node.children[i]) {
+				      textNode = document.createTextNode('\n' + indentAfter);
+				      node.appendChild(textNode);
+				    }
+				  }
+
+				  return node;
+				}
+
+				document.querySelector('#out').innerText = process(codeAux);
+			
+			
 		</script>
+
+
+
+
+
+
+
+
+
+
+
+
+		<!-- <script th:inline="javascript">
+			/*<![CDATA[*/
+
+			var code = /*[[${concepts}]]*/'default';
+			var fname = /*[[${paths}]]*/'default';
+
+			/*]]>*/
+			$(document).ready(function() {
+				//console.log("Kodea:" + code);
+				codeAux = code.replaceAll('#LINE_BREAK#', '\n');
+				$('.showText').text(codeAux);
+			});
+		</script> -->
+
 	</section>
 
 </body>

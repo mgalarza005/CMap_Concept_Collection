@@ -193,7 +193,7 @@ public class HelloWorld {
 		model2.addAttribute("concepts", concepts);
 		model2.addAttribute("weigths", weigths);
 		
-		ModelAndView modelAndViewCon2 = new ModelAndView("conceptC");
+		ModelAndView modelAndViewCon2 = new ModelAndView("conceptCloud");
 		return modelAndViewCon2;
 	}
 	@RequestMapping("/about")

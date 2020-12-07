@@ -79,20 +79,15 @@
 						var result = "<ul>";
 						var aux = "";
 						var ss = lines[i].split("[");
-						//console.log(ss);
 						var ss1 = ss[1].split(";");
-						//console.log(ss1);
-						//console.log("Emaitza: " + ss1[0].split(" "));
 
 						for (var j = 0; j < ss1.length - 1; j++) {
 							var ss2 = ss1[j].split(" ");
-							//console.log("Emaitza: " + ss2);
 							var ss3 = ss2[0].split(":");
 							aux += "<li><a class='linka' href='http://localhost:9898/codefiles/"+ss3[0]+"'>"
 									+ ss3[0] + "</a></li>";
 
 						}
-						//console.log("Emaitza: " + ss1[0].split(" "));
 						var ss2 = ss1[ss1.length - 1].split(" ");
 						var ss3 = ss2[0].split(":");
 
@@ -108,10 +103,8 @@
 				var lines = paths.split('\n');
 				for (var i = 0; i < lines.length - 1; i++) {
 					if (lines[i].includes(term1)) {
-						//console.log("Line :"+ lines[i]);
 						var ss = lines[i].split("kopurua:");
 						var ss1 = ss[1].split("   ");
-						//console.log(ss1[1]);
 						return ss1[1];
 					}
 					
@@ -124,13 +117,9 @@
 				var lines = weigths.split('\n');
 				
 				for (var i = 0; i < lines.length - 1; i++) {
-					//console.log(lines[i]);
 					con = con.replaceAll('*', '');
-					console.log(con);
 					if (lines[i].includes(con)) {
-						console.log(lines[i]);
 						var values = lines[i].split(" ");
-						
 						return values[1];
 					}
 			}
@@ -143,18 +132,12 @@
 				for (var i = 0; i < lines.length - 1; i++) {
 					if (lines[i].includes(term1)) {
 						var ss = lines[i].split("[");
-						//console.log(ss);
 						var ss1 = ss[1].split(";");
-						//console.log(ss1);
-						//console.log("Emaitza: " + ss1[0].split(" "));
-
 						for (var j = 0; j < ss1.length - 1; j++) {
 							var ss2 = ss1[j].split(" ");
-							//console.log(ss2);
 							var ss3 = ss2[1].split("]");
 							aux += "<li>" + ss3[0] + "</li>";
 						}
-						//console.log("Emaitza: " + ss1[0].split(" "));
 						var ss2 = ss1[ss1.length - 1].split(" ");
 						var ss3 = ss2[1].split("]");
 						aux += "<li>" + ss3[0] + "</li>";
@@ -166,12 +149,8 @@
 				}
 			}
 
-			//console.log("kontzeptuaaaaaak \n" + terms);
-			//console.log("Paths \n " + paths);
 			//By lines
 			var lines = terms.split('\n');
-			//console.log("Luzeera: " + lines.length)
-			//txt += "<ul class='list-group list-group-flush'"
 			luzera = lines.length;
 			for (var i = 0; i < luzera - 1; i++) {
 				var concept = lines[i].split(":");
@@ -182,12 +161,10 @@
 						+ j.toString()
 						+ "' role='button' "
 						+ "aria-expanded='false'   aria-controls='multiCollapseExample"
-						+ j.toString() + "'>"+concept[0]+"</a> </p><p>"+w4+": "+getAllWeights(concept[0])+"</p>";
+						+ j.toString() + "'>"+concept[0].replaceAll('*', '')+"\n"+ w4+": "+getAllWeights(concept[0])+"</a> </p>";
 
-				//console.log("Terminoak: " + concept[1]);
 
 				var terms = concept[1].split(",");
-				//console.log("TermsSplit: " + terms);
 				//Table inside each concept
 				var a = "<table class='table'>"
 						+ "<thead class='thead-dark'><tr><th scope='col'>#</th>"
