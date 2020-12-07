@@ -69,6 +69,7 @@
 
 			var terms = /*[[${concepts}]]*/'default';
 			var paths = /*[[${paths}]]*/'default';
+			var  weigths= /*[[${weigths}]]*/'default';
 
 			/*]]>*/
 			function getFile(term1) {
@@ -118,9 +119,21 @@
 				
 			}
 			
-			function getAllWeights(){
+			
+			function getAllWeights(con){
+				var lines = weigths.split('\n');
 				
-				return "45W";
+				for (var i = 0; i < lines.length - 1; i++) {
+					//console.log(lines[i]);
+					con = con.replaceAll('*', '');
+					console.log(con);
+					if (lines[i].includes(con)) {
+						console.log(lines[i]);
+						var values = lines[i].split(" ");
+						
+						return values[1];
+					}
+			}
 			}
 			
 			function getPath(term1) {
@@ -169,7 +182,7 @@
 						+ j.toString()
 						+ "' role='button' "
 						+ "aria-expanded='false'   aria-controls='multiCollapseExample"
-						+ j.toString() + "'>"+concept[0]+"</a> </p><p>"+w4+": "+getAllWeights()+"</p>";
+						+ j.toString() + "'>"+concept[0]+"</a> </p><p>"+w4+": "+getAllWeights(concept[0])+"</p>";
 
 				//console.log("Terminoak: " + concept[1]);
 

@@ -143,6 +143,7 @@ public class HelloWorld {
 		model1.addAttribute("title", "Concepts");
 		model1.addAttribute("concepts", concepts);
 		model1.addAttribute("paths", paths);
+		model1.addAttribute("weigths", weigths);
 		
 		ModelAndView modelAndViewCon1 = new ModelAndView("concepts");
 		return modelAndViewCon1;
