@@ -111,12 +111,12 @@ public class HelloWorld {
 	@RequestMapping (value = "/codefiles/{fname}", method = RequestMethod.GET)
 	public ResponseEntity<Object> redirectToExternalUrl(@PathVariable String fname) throws URISyntaxException {
 	    
-		Codefile cf = CMapRepository.findByfileNameContaining(fname);
+		Codefile cf = CMapRepository.findByfileName(fname);
 		this.content = cf.getContent();
 		this.filename=fname;
 		
-		System.out.println("Edukia: " + content);
-		System.out.println("File-a: " + filename);
+		//System.out.println("Edukia: " + content);
+		//System.out.println("File-a: " + filename);
 		
 		
 		URI uri = new URI("/f");

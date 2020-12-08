@@ -10,6 +10,6 @@ import java.util.List;
 public interface CMapRepository extends JpaRepository<Codefile, String>{
 
 	
-	Codefile findByfileNameContaining(String text);
+	Codefile findByfileName(String text);
 	//String getFileContent(String text);
 }
