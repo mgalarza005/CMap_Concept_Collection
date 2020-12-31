@@ -7,8 +7,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import javax.servlet.Filter;
 
@@ -63,16 +67,87 @@ public class HelloWorld {
 	}
 	 */
 	public String getConcepts() throws IOException {
-		String s;
+		HashMap <Integer, String> map = new HashMap <Integer, String> ();
+		String s1;
 		String c="";
-		 
-		BufferedReader bf = new BufferedReader(new FileReader("C:\\Users\\MIKEL1\\git\\CMap_Concept_Collection\\.git\\CMap_Concept_Collection\\src\\main\\resources\\static\\files\\clusterDone.txt"));
-		while ((s = bf.readLine()) != null) {
-			c += s + "\n";
-		}
+		BufferedReader bf1 = new BufferedReader(new FileReader("C:\\Users\\MIKEL1\\git\\CMap_Concept_Collection\\.git\\CMap_Concept_Collection\\src\\main\\resources\\static\\files\\clusterDone.txt"));
+		while ((s1 = bf1.readLine()) != null) {
+			//ordenatu gabe
+			/*
+			 
+			 c += s + "\n";
+			 
+			 */
+			 
+			Integer conceptWeigth=0;
+			String concept=null;
+			String[] aux = s1.split(":");
+			concept = aux[0];
 
-		bf.close();
+			String[] terms = aux[1].split(", ");
+
+			for(int i=0; i<terms.length; i++) {
+				conceptWeigth += getTermWeight(terms[i]);
+			}
+			map.put(conceptWeigth, s1);
+		}
+		SortedSet<Integer> keys = new TreeSet<>(Collections.reverseOrder());
+		keys.addAll(map.keySet());
+		for (Integer key : keys) { 
+			   c+= map.get(key) + "\n";
+			  
+			}
+		
+		bf1.close();
 		return c;
+	}
+	
+
+	public String getWeigths() throws IOException {
+		String jsonWeigths="";
+		
+		String s1;
+		BufferedReader bf1 = new BufferedReader(new FileReader("C:\\Users\\MIKEL1\\git\\CMap_Concept_Collection\\.git\\CMap_Concept_Collection\\src\\main\\resources\\static\\files\\clusterDone.txt"));
+		while ((s1 = bf1.readLine()) != null) {
+			Integer conceptWeigth=0;
+			String concept=null;
+			String[] aux = s1.split(":");
+			concept = aux[0];
+			
+			String[] terms = aux[1].split(", ");
+			
+			for(int i=0; i<terms.length; i++) {
+				conceptWeigth += getTermWeight(terms[i]);
+				
+			}
+			jsonWeigths += concept.replace("*", "")+" "+conceptWeigth+"\n";
+
+		}
+		
+		
+		bf1.close();
+		return jsonWeigths;
+		
+	}
+	
+private static Integer getTermWeight(String term) throws IOException {
+		
+		BufferedReader bf2 = new BufferedReader(new FileReader("C:\\Users\\MIKEL1\\git\\CMap_Concept_Collection\\.git\\CMap_Concept_Collection\\src\\main\\resources\\static\\files\\termTable.txt"));
+		String s2;
+		String[] aux1=null;
+		while ((s2 = bf2.readLine()) != null) {
+			if (s2.contains(term)) {
+				String[] aux= s2.split("kopurua:");
+				aux1 = aux[1].split("   ");
+				
+				
+			}
+		}
+		bf2.close();
+		return Integer.parseInt(aux1[1]);
+		
+		
+		
 	}
 	
 	public String getPaths() throws IOException {
@@ -137,6 +212,8 @@ public class HelloWorld {
 		ModelAndView modelAndViewCon1 = new ModelAndView("codefile");
 		return modelAndViewCon1;
 	}*/
+	
+	
 	@RequestMapping("/concepts")
 	public ModelAndView Concepts(Model model1) throws IOException {
 		
@@ -208,54 +285,8 @@ public class HelloWorld {
 	}
 	
 	
-	public String getWeigths() throws IOException {
-		String jsonWeigths="";
-		String p="";
-		 
-		String s1;
-		BufferedReader bf1 = new BufferedReader(new FileReader("C:\\Users\\MIKEL1\\git\\CMap_Concept_Collection\\.git\\CMap_Concept_Collection\\src\\main\\resources\\static\\files\\clusterDone.txt"));
-		while ((s1 = bf1.readLine()) != null) {
-			Integer conceptWeigth=0;
-			String concept=null;
-			String[] aux = s1.split(":");
-			concept = aux[0];
-			//System.out.println(concept);
-			
-			//System.out.println(aux[1]);
-			String[] terms = aux[1].split(", ");
-			
-			for(int i=0; i<terms.length; i++) {
-				conceptWeigth += getTermWeight(terms[i]);
-				
-			}
-			jsonWeigths += concept.replace("*", "")+" "+conceptWeigth+"\n";
 
-		}
-		
-		//System.out.println(jsonWeigths);
-		bf1.close();
-		return jsonWeigths;
-		
-	}
-
-	private static Integer getTermWeight(String term) throws IOException {
-		
-		BufferedReader bf2 = new BufferedReader(new FileReader("C:\\Users\\MIKEL1\\git\\CMap_Concept_Collection\\.git\\CMap_Concept_Collection\\src\\main\\resources\\static\\files\\termTable.txt"));
-		String s2;
-		String[] aux1=null;
-		while ((s2 = bf2.readLine()) != null) {
-			if (s2.contains(term)) {
-				String[] aux= s2.split("kopurua:");
-				aux1 = aux[1].split("   ");
-				
-				
-			}
-		}
-		return Integer.parseInt(aux1[1]);
-		
-		
-		
-	}
+	
 	
 	
 }
