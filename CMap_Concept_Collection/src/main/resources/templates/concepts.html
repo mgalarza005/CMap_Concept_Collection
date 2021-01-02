@@ -99,6 +99,35 @@
 					}
 				}
 			}
+			
+			function getFeature(term1) {
+				var lines = paths.split('\n');
+				for (var i = 0; i < lines.length - 1; i++) {
+					if (lines[i].includes(term1)) {
+						var result = "<ul>";
+						var aux = "";
+						var ss = lines[i].split("[");
+						var ss1 = ss[1].split(";");
+
+						for (var j = 0; j < ss1.length - 1; j++) {
+							var ss2 = ss1[j].split(" ");
+							var ss3 = ss2[0].split(":");
+							aux += "<li><a class='linka' href='http://localhost:9898/features/"+ss3[0]+"'>"
+									+ ss3[0] + "</a></li>";
+
+						}
+						var ss2 = ss1[ss1.length - 1].split(" ");
+						var ss3 = ss2[0].split(":");
+
+						aux += "<li><a class='linka' href='http://localhost:9898/features/"+ss3[0]+"'>"
+								+ ss3[0] + "</a></li>";
+						result += aux;
+						result += "</ul>";
+						return (result);
+					}
+				}
+			}
+			
 			function getApparition(term1){
 				var lines = paths.split('\n');
 				for (var i = 0; i < lines.length - 1; i++) {
@@ -167,13 +196,15 @@
 				var terms = concept[1].split(",");
 				//Table inside each concept
 				var a = "<table class='table'>"
-						+ "<thead class='thead-dark'><tr><th scope='col'>#</th>"
-						+"<th scope='col'><div><p>"+w1+"</p></div></th>"
-						+"<th scope='col'><div><p>"+w2+"</p></div></th>"
-						+"<th scope='col'><div> <p>"+w3+"</p></div></th>"
-						+"<th scope='col'><div> <p>"+w5+"</p></div></th>"+
-						
-						"</tr>"
+						+ "<thead class='thead-dark'>"+
+						+"<tr>"
+							+"<th scope='col'>#</th>"
+							+"<th scope='col'><div><p>"+w1+"</p></div></th>"
+							+"<th scope='col'><div><p>"+w2+"</p></div></th>"
+							+"<th scope='col'><div> <p>"+w3+"</p></div></th>"
+							+"<th scope='col'><div> <p>"+w5+"</p></div></th>"
+							+"<th scope='col'><div> <p>"+w5+"</p></div></th>"
+						+"</tr>"
 						+ "</thead><tbody>";
 				for (var k = 0; k < terms.length; k++) {
 					var t = k + 1;
@@ -187,6 +218,7 @@
 
 							"</td><td align='center'>" + getPath(term1) +
 					"</td><td align='center'>" + getApparition(term1) +
+					"</td><td align='center'>" + getFeature(term1) +
 					"</td></tr>";
 				}
 

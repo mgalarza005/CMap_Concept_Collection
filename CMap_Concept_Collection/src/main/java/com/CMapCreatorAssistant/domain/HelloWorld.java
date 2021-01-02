@@ -43,6 +43,7 @@ public class HelloWorld {
 	private String content;
 	private String filename;
 	private String weigths;
+	private String term;
 	//private String saludo;
 	
 	@Autowired
@@ -190,16 +191,27 @@ private static Integer getTermWeight(String term) throws IOException {
 		this.content = cf.getContent();
 		this.filename=fname;
 		
-		//System.out.println("Edukia: " + content);
-		//System.out.println("File-a: " + filename);
-		
-		
+				
 		URI uri = new URI("/f");
 	    HttpHeaders httpHeaders = new HttpHeaders();
 	    httpHeaders.setLocation(uri);
 	    return new ResponseEntity<>(httpHeaders, HttpStatus.SEE_OTHER);
 	}
 	
+	
+	@RequestMapping (value = "/features/{term}", method = RequestMethod.GET)
+	public ResponseEntity<Object> redirectToExternalUrl2(@PathVariable String term) throws URISyntaxException {
+	    
+		//Codefile cf = CMapRepository.findByfileName(fname);
+		//this.content = cf.getContent();
+		this.term=term;
+		
+				
+		URI uri = new URI("/term");
+	    HttpHeaders httpHeaders = new HttpHeaders();
+	    httpHeaders.setLocation(uri);
+	    return new ResponseEntity<>(httpHeaders, HttpStatus.SEE_OTHER);
+	}
 	/*
 	@RequestMapping("/codefile")
 	public ModelAndView CodeFile(Model model) throws IOException {
@@ -225,6 +237,15 @@ private static Integer getTermWeight(String term) throws IOException {
 		ModelAndView modelAndViewCon1 = new ModelAndView("concepts");
 		return modelAndViewCon1;
 	}
+	
+	@RequestMapping("/features")
+	public ModelAndView Feature(Model model1) throws IOException {
+		
+		
+		ModelAndView modelAndViewCon = new ModelAndView("features");
+		return modelAndViewCon;
+	}
+	
 	@RequestMapping("/f")
 	public ModelAndView FC(Model model1) throws IOException {
 		
@@ -238,6 +259,20 @@ private static Integer getTermWeight(String term) throws IOException {
 		model1.addAttribute("paths", filename);
 		
 		ModelAndView modelAndViewCon= new ModelAndView("f");
+		return modelAndViewCon;
+	}
+	
+	@RequestMapping("/term")
+	public ModelAndView TermSimilarity(Model model1) throws IOException {
+		
+	
+		
+		
+		model1.addAttribute("title", "Similarity");
+		model1.addAttribute("term", term);
+		
+		
+		ModelAndView modelAndViewCon= new ModelAndView("features");
 		return modelAndViewCon;
 	}
 
