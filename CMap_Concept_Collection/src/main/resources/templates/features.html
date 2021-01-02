@@ -58,7 +58,6 @@ html, body, #container {
         title: 'Term and Features similarity',
         header: ['#', 'Similarity of term: '+term],
         rows: [
-          ['AnnotationOperation', levenshtein("AnnotationOperation", term)],
           ['Source', levenshtein("Source", term)],
           ['Selector',levenshtein("Selector", term)],
           ['Format', levenshtein("Format", term)],
@@ -66,13 +65,22 @@ html, body, #container {
           ['Update', levenshtein("Update", term)],
           ['Delete', levenshtein("Delete", term)],
           ['Create', levenshtein("Create", term)],
+          ['AnnotationOperation', levenshtein("AnnotationOperation", term)],
           ['ImportExport', levenshtein("ImportExport", term)],
           ['ImportAnnotation', levenshtein("ImportAnnotation", term)],
           ['Export', levenshtein("Export", term)],
           ['CodeBook', levenshtein("CodeBook", term)],
           ['AnnotationServer', levenshtein("AnnotationServer", term)],
-          ['Remote', levenshtein("Remote", term)],
-          ['Local', levenshtein("Local", term)]
+          ['Target', levenshtein("Target", term)],
+          ['CodebookTypology', levenshtein("CodebookTypology", term)],
+          ['CodebookImportExport', levenshtein("Source", term)],
+          ['Presentation',levenshtein("Presentation", term)],
+          ['Interface', levenshtein("Interface", term)],
+          ['Order', levenshtein("Order", term)],
+          ['Commenting', levenshtein("Commenting", term)],
+          ['Assesing', levenshtein("Assesing", term)],
+          ['Classifying', levenshtein("Classifying", term)],
+          ['Replaying', levenshtein("Replaying", term)]
         ]
       };
 
@@ -95,7 +103,7 @@ html, body, #container {
       chart.legend().align('center').enabled(true);
 
       // set tooltip format
-      chart.tooltip().format('Similarity: {%Value}\xb0');
+      chart.tooltip().format('Similarity: {%Value}');
 
       // set container id for the chart
       chart.container('container');
