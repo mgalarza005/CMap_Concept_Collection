@@ -44,12 +44,12 @@
 
 		</div>
 		<script th:inline="javascript">
-			var txt = "";
+			var txt = " ";
 			var rr = document.getElementById("hj").innerHTML;
-			//console.log(rr);
+			
 			var e = rr.split('<p class="prp">');
 			var l1=e[1].split('<');
-			//console.log("MIkel" + e.length);
+			
 			
 			var w1 =l1[0];
 			
@@ -74,7 +74,7 @@
 
 			var terms = /*[[${concepts}]]*/'default';
 			var paths = /*[[${paths}]]*/'default';
-			var  weigths= /*[[${weigths}]]*/'default';
+			var weigths= /*[[${weigths}]]*/'default';
 
 			/*]]>*/
 			function getFile(term1) {
@@ -82,7 +82,7 @@
 				for (var i = 0; i < lines.length - 1; i++) {
 					if (lines[i].includes(term1)) {
 						var result = "<ul>";
-						var aux = "";
+						var aux = " ";
 						var ss = lines[i].split("[");
 						var ss1 = ss[1].split(";");
 
@@ -109,27 +109,33 @@
 				var lines = paths.split('\n');
 				for (var i = 0; i < lines.length - 1; i++) {
 					if (lines[i].includes(term1)) {
+						
 						var result = "<ul>";
-						var aux = "";
+						var aux = " ";
 						var ss = lines[i].split("[");
 						var ss1 = ss[1].split(";");
 
 						for (var j = 0; j < ss1.length - 1; j++) {
+							if (ss1.length>1){
+								
+							}
+							
 							var ss2 = ss1[j].split(" ");
 							var ss3 = ss2[0].split(":");
+							var ss4 = ss3[0].split(".");
 							aux += "<li><a class='linka' href='http://localhost:9898/features/"+ss3[0]+"'>"
-									+ ss3[0] + "</a></li>";
+									+ ss4[0] + "</a></li>";
 
 						}
-						console.log(ss1[ss1.length - 1]);
+						
 						var ss2 = ss1[ss1.length - 1].split(" ");
-						console.log(ss2);
+						
 
 						var ss3 = ss2[0].split(":");
-						console.log(ss3);
+						
 
 						var ss4 = ss3[0].split(".");
-						console.log(ss4);
+						
 
 
 						aux += "<li><a class='linka' href='http://localhost:9898/features/"+ss3[0]+"'>"
@@ -169,7 +175,7 @@
 			
 			function getPath(term1) {
 				var result = "<ul>";
-				var aux = "";
+				var aux = " ";
 				var lines = paths.split('\n');
 				for (var i = 0; i < lines.length - 1; i++) {
 					if (lines[i].includes(term1)) {
@@ -193,23 +199,23 @@
 
 			//By lines
 			var lines = terms.split('\n');
-			luzera = lines.length;
+			var luzera = lines.length;
 			for (var i = 0; i < luzera - 1; i++) {
 				var concept = lines[i].split(":");
 				var j = i + 1;
 
 				txt += "<li class='list-group-item'>" 
 				txt += "<p><a class='btn btn-primary' data-toggle='collapse' href='#multiCollapseExample"
-						+ j.toString()
-						+ "' role='button' "
+						+ j
+						+"' role='button' "
 						+ "aria-expanded='false'   aria-controls='multiCollapseExample"
-						+ j.toString() + "'>"+concept[0].replaceAll('*', '')+"\n"+ w4+": "+getAllWeights(concept[0])+"</a> </p>";
+						+ j +"'>"+concept[0].replaceAll('*', '')+"\n"+ w4+": "+getAllWeights(concept[0])+"</a> </p>";
 
 
 				var terms = concept[1].split(",");
 				//Table inside each concept
 				var a = "<table class='table'>"
-						+ "<thead class='thead-dark'>"+
+						+ "<thead class='thead-dark'>"
 						+"<tr>"
 							+"<th scope='col'>#</th>"
 							+"<th scope='col'><div><p>"+w1+"</p></div></th>"
@@ -222,7 +228,7 @@
 				for (var k = 0; k < terms.length; k++) {
 					var t = k + 1;
 					var term1 = terms[k]
-					a += "<tr><th scope='row'>" + t.toString() + "</th><td>"
+					a += "<tr><th scope='row'>" + t + "</th><td>"
 							+ term1 +
 
 							"</td><td display='inline-block' align='left'> " +
@@ -231,14 +237,16 @@
 
 							"</td><td display='inline-block' align='left'>" + getPath(term1) +
 					"</td><td align='center'>" + getApparition(term1) +
-					"</td><td display='inline-block' align='left'>" + getFeature(term1) +
+					"</td><td display='inline-block' align='left'>" + getFeature(term1)  +
 					"</td></tr>";
+					
 				}
+				
 
 				a += "</tbody></table>";
 
 				txt += "<div class='row'><div class='col'><div class='collapse multi-collapse' id='multiCollapseExample"
-						+ j.toString() + "'><div class='card card-body'>" + a;
+						+ j + "'><div class='card card-body'>" + a;
 
 				txt += "</div></div></div></div>";
 
