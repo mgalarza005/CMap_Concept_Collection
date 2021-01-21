@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CMapRepository extends JpaRepository<Codefile, String>{
+public interface CMapData extends JpaRepository<Codefile, String>{
 
 	
 	Codefile findByfileName(String text);

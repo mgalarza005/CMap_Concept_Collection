@@ -35,7 +35,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 @RestController
-public class HelloWorld {
+public class Launcher {
 	int au;
 	private static ModelAndView modelAndViewCon3;
 	private String concepts;
@@ -47,11 +47,11 @@ public class HelloWorld {
 	//private String saludo;
 	
 	@Autowired
-	CMapRepository CMapRepository;
+	CMapData CMapRepository;
 
 	
 	
-	public HelloWorld() throws IOException {
+	public Launcher() throws IOException {
 		super();
 		this.au = 0;
 		this.concepts = getConcepts();

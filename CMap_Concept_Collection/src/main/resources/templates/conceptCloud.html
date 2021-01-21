@@ -52,17 +52,18 @@ html, body, #container {
 			var data1 = /*[[${weigths}]]*/'default';
 
 			/*]]>*/
-			var data=[]
+			var data = []
 			var lines = data1.split('\n');
-			for (var i = 0; i < lines.length-1; i++) {
+			for (var i = 0; i < lines.length - 1; i++) {
 				var values = lines[i].split(" ");
-				data.push({"x" : values[0], "value" : values[1]})
+				data.push({
+					"x" : values[0],
+					"value" : values[1]
+				})
+				console.log(data);
 			}
-			
-			
-			anychart.onDocumentReady(function() {
 
-			
+			anychart.onDocumentReady(function() {
 
 				// create a tag cloud chart
 				var chart = anychart.tagCloud(data);

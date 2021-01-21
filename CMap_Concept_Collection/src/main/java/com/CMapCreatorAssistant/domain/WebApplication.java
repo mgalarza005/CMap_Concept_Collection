@@ -7,11 +7,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @SpringBootApplication
-public class DemoWebApplication implements CommandLineRunner {
+public class WebApplication implements CommandLineRunner {
 
-	private static Logger log=LoggerFactory.getLogger(DemoWebApplication.class);	
+	private static Logger log=LoggerFactory.getLogger(WebApplication.class);	
 	public static void main(String[] args) {
-		SpringApplication.run(DemoWebApplication.class, args);
+		SpringApplication.run(WebApplication.class, args);
 	}
 	
 	
