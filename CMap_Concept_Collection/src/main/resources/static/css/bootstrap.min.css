@@ -337,8 +337,8 @@ template {
 }
 
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
-	margin-bottom: .5rem;
-	font-weight: 500;
+	margin-bottom: .5rem; 
+	font-weight: 650;
 	line-height: 1.2
 }
 
@@ -392,7 +392,8 @@ template {
 .display-4 {
 	font-size: 3.5rem;
 	font-weight: 300;
-	line-height: 1.2
+	line-height: 1.2;
+	color: #2c68d7
 }
 
 hr {

@@ -114,7 +114,7 @@
 						var aux = " ";
 						var ss = lines[i].split("[");
 						var ss1 = ss[1].split(";");
-
+						/*
 						for (var j = 0; j < ss1.length - 1; j++) {
 							if (ss1.length>1){
 								
@@ -126,9 +126,9 @@
 							aux += "<li><a class='linka' href='http://localhost:9898/features/"+ss3[0]+"'>"
 									+ ss4[0] + "</a></li>";
 
-						}
+						}*/
 						
-						var ss2 = ss1[ss1.length - 1].split(" ");
+						var ss2 = ss1[0].split(" ");
 						
 
 						var ss3 = ss2[0].split(":");
@@ -208,7 +208,7 @@
 				txt += "<p><a class='btn btn-primary' data-toggle='collapse' href='#multiCollapseExample"
 						+ j
 						+"' role='button' "
-						+ "aria-expanded='false'   aria-controls='multiCollapseExample"
+						+ "aria-expanded='false'   aria-controls='multiCollapseExample data-toggle='tooltip' data-placement='top' title='Click to see more information about this concept'"
 						+ j +"'>"+concept[0].replaceAll('*', '')+"\n"+ w4+": "+getAllWeights(concept[0])+"</a> </p>";
 
 
@@ -220,9 +220,13 @@
 							+"<th scope='col'>#</th>"
 							+"<th scope='col'><div><p>"+w1+"</p></div></th>"
 							+"<th scope='col'><div><p>"+w2+"</p></div></th>"
-							+"<th scope='col'><div> <p>"+w3+"</p></div></th>"
-							+"<th scope='col'><div> <p>"+w5+"</p></div></th>"
-							+"<th scope='col'><div> <p>"+w6+"</p></div></th>"
+							+"<th scope='col'><div> <p data-toggle='tooltip' data-placement='top' title='The path of the file' >"+w3+"</p></div></th>"
+														 
+							
+							// +"<th scope='col'><div><button type='button' class='btn btn-secondary' data-toggle='tooltip' data-placement='top' title='Click if you want to see the similarity of the term with SPL features'> "+w5+"</button></div></th>"
+							  
+							+"<th scope='col'><div> <p data-toggle='tooltip' data-placement='top' title='Number of times this term appears throughout the Software Product Line'>"+w5+"</p></div></th>"
+							+"<th scope='col'><div> <p data-toggle='tooltip' data-placement='top' title='Click if you want to see the similarity of the term with SPL features'>"+w6+"</p></div></th>"
 						+"</tr>"
 						+ "</thead><tbody>";
 				for (var k = 0; k < terms.length; k++) {

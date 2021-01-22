@@ -7,12 +7,10 @@
 
 <script
 	src="https://cdn.anychart.com/releases/v8/js/anychart-radar.min.js"></script>
-<link
-	th:href="@{/css/anychart-ui.min.css}"
-	type="text/css" rel="stylesheet">
-<link
-	th:href="@{/css/anychart-font.min.css}"
-	type="text/css" rel="stylesheet">
+<link th:href="@{/css/anychart-ui.min.css}" type="text/css"
+	rel="stylesheet">
+<link th:href="@{/css/anychart-font.min.css}" type="text/css"
+	rel="stylesheet">
 <style type="text/css">
 html, body, #container {
 	width: 100%;
@@ -30,90 +28,169 @@ html, body, #container {
 
 		<script th:src="@{/js/anychart-base.min.js}"></script>
 		<script th:src="@{/js/anychart-tag-cloud.min.js}"></script>
-		
+
 		<script th:src="@{/js/anychart-exports.min.js}"></script>
 		<script th:src="@{/js/anychart-radar.min.js}"></script>
 		<script th:src="@{/js/anychart-ui.min.js}"></script>
 		<script th:src="@{/js/levenshtein.js}"></script>
 
 		<script th:inline="javascript">
-		
-		/*<![CDATA[*/
+			/*<![CDATA[*/
 
-		var term = /*[[${term}]]*/'default';
-		
+			var term = /*[[${term}]]*/'default';
 
-		/*]]>*/
-		auxTerm = term.split(".");
-		
-		term = auxTerm[0];
-		console.log("Similarity Levenshtein: " + levenshtein("AnnotationOperation", term));
-		function getSimilarity() {
-			return 4.3;
-		}
+			/*]]>*/
+			auxTerm = term.split(".");
 
-    anychart.onDocumentReady(function () {
-      // create data set on our data
-      var chartData = {
-        title: 'Term and Features similarity',
-        header: ['#', 'Similarity of term: '+term],
-        rows: [
-          ['Source', levenshtein("Source", term)],
-          ['Selector',levenshtein("Selector", term)],
-          ['Format', levenshtein("Format", term)],
-          ['Read', levenshtein("Read", term)],
-          ['Update', levenshtein("Update", term)],
-          ['Delete', levenshtein("Delete", term)],
-          ['Create', levenshtein("Create", term)],
-          ['AnnotationOperation', levenshtein("AnnotationOperation", term)],
-          ['ImportExport', levenshtein("ImportExport", term)],
-          ['ImportAnnotation', levenshtein("ImportAnnotation", term)],
-          ['Export', levenshtein("Export", term)],
-          ['CodeBook', levenshtein("CodeBook", term)],
-          ['Order', levenshtein("Order", term)],
-          ['Target', levenshtein("Target", term)],
-          ['CodebookTypology', levenshtein("CodebookTypology", term)],
-          ['CodebookImportExport', levenshtein("Source", term)],
-          ['Presentation',levenshtein("Presentation", term)],
-          ['Interface', levenshtein("Interface", term)],
-          ['AnnotationServer', levenshtein("AnnotationServer", term)],
-          ['Commenting', levenshtein("Commenting", term)],
-          ['Assesing', levenshtein("Assesing", term)],
-          ['Classifying', levenshtein("Classifying", term)],
-          ['Replaying', levenshtein("Replaying", term)]
-        ]
-      };
+			term = auxTerm[0];
+			console.log("Similarity Levenshtein: "
+					+ levenshtein("AnnotationOperation", term));
 
-      // create radar chart
-      var chart = anychart.radar();
+			function getMinSim() {
 
-      // set default series type
-      chart.defaultSeriesType('area');
+				var similarities = [];
 
-      // set chart data
-      chart.data(chartData);
+				similarities.push(levenshtein("Source", term));
+				similarities.push(levenshtein("Selector", term));
+				similarities.push(levenshtein("Format", term));
+				similarities.push(levenshtein("Read", term));
+				similarities.push(levenshtein("Update", term));
+				similarities.push(levenshtein("Delete", term));
+				similarities.push(levenshtein("Create", term));
+				similarities.push(levenshtein("AnnotationOperation", term));
+				similarities.push(levenshtein("ImportExport", term));
+				similarities.push(levenshtein("ImportAnnotation", term));
+				similarities.push(levenshtein("Export", term));
+				similarities.push(levenshtein("CodeBook", term));
+				similarities.push(levenshtein("Order", term));
+				similarities.push(levenshtein("Target", term));
+				similarities.push(levenshtein("CodebookTypology", term));
+				similarities.push(levenshtein("CodebookImportExport", term));
+				similarities.push(levenshtein("Presentation", term));
+				similarities.push(levenshtein("Interface", term));
+				similarities.push(levenshtein("AnnotationServer", term));
+				similarities.push(levenshtein("Commenting", term));
+				similarities.push(levenshtein("Assesing", term));
+				similarities.push(levenshtein("Replaying", term));
 
-      // set chart yScale settings
-      chart.yScale().minimum(0).maximumGap(0).ticks({ interval: 10 });
+				console.log(Math.min.apply(Math, similarities));
 
-      // set axes labels settings
-      chart.xAxis().labels().padding(5);
+				return Math.min.apply(Math, similarities);
+			}
+			var chartData = {
+					title : 'Term and Features similarity',
+					header : [ '#', 'Similarity of term: ' + term ],
+					rows : [
+							[ 'Source', levenshtein("Source", term) ],
+							[ 'Selector', levenshtein("Selector", term) ],
+							[ 'Format', levenshtein("Format", term) ],
+							[ 'Read', levenshtein("Read", term) ],
+							[ 'Update', levenshtein("Update", term) ],
+							[ 'Delete', levenshtein("Delete", term) ],
+							[ 'Create', levenshtein("Create", term) ],
+							[
+									'AnnotationOperation',
+									levenshtein("AnnotationOperation",
+											term) ],
+							[ 'ImportExport',
+									levenshtein("ImportExport", term) ],
+							[
+									'ImportAnnotation',
+									levenshtein("ImportAnnotation",
+											term) ],
+							[ 'Export', levenshtein("Export", term) ],
+							[ 'CodeBook', levenshtein("CodeBook", term) ],
+							[ 'Order', levenshtein("Order", term) ],
+							[ 'Target', levenshtein("Target", term) ],
+							[
+									'CodebookTypology',
+									levenshtein("CodebookTypology",
+											term) ],
+							[
+									'CodebookImportExport',
+									levenshtein("CodebookImportExport",
+											term) ],
+							[ 'Presentation',
+									levenshtein("Presentation", term) ],
+							[ 'Interface',
+									levenshtein("Interface", term) ],
+							[
+									'AnnotationServer',
+									levenshtein("AnnotationServer",
+											term) ],
+							[ 'Commenting',
+									levenshtein("Commenting", term) ],
+							[ 'Assesing', levenshtein("Assesing", term) ],
+							[ 'Classifying',
+									levenshtein("Classifying", term) ],
+							[ 'Replaying',
+									levenshtein("Replaying", term) ] ]
+				};
 
-      // set chart legend settings
-      chart.legend().align('center').enabled(true);
+			anychart
+					.onDocumentReady(function() {
+						// create data set on our data
+						//Its created below
 
-      // set tooltip format
-      chart.tooltip().format('Similarity: {%Value}');
+						// create radar chart
+						var chart = anychart.radar();
 
-      // set container id for the chart
-      chart.container('container');
-      // initiate chart drawing
-      chart.draw();
-    });
-  
-</script>
+						// set default series type
+						chart.defaultSeriesType('area');
 
-</section>
+						// set chart data
+						chart.data(chartData);
+
+						// set chart yScale settings
+						chart.yScale().minimum(0).maximumGap(0).ticks({
+							interval : 10
+						});
+
+						// set axes labels settings
+						chart.xAxis().labels().padding(5);
+
+						// set chart legend settings
+						chart.legend().align('center').enabled(true);
+
+						// set tooltip format
+						chart.tooltip().format('Similarity: {%Value}');
+
+						// set container id for the chart
+						chart.container('container');
+						// initiate chart drawing
+						chart.draw();
+					});
+
+			function getC() {
+				for (var k = 0; k < chartData.rows.length; k++) {
+					if (chartData.rows[k][1] == getMinSim()) {
+						return chartData.rows[k][0];
+					}
+				}
+			}
+		</script>
+
+		<div>
+
+			<p>This graph shows the similarity of the term to the SPL
+				characteristics. This calculation is made using the Levenshtein
+				distance and the larger the value the less similar the elements are.</p>
+
+			<p>
+				In this case the most similar characteristic to the term is
+				<mark id="t"></mark>
+				with a similarity of
+				<mark id="te"></mark>
+				.
+			</p>
+
+		</div>
+		<script>
+			document.getElementById("te").innerHTML = getMinSim();
+			document.getElementById("t").innerHTML = getC();
+		</script>
+
+	</section>
 
 </body>
 </html>
