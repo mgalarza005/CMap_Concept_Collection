@@ -65,9 +65,9 @@
 					th:text="#{navbar.cloud}"></a></li>		
 			</ul>
 
-			<span th:text="#{lang.change}" style="color: white"></span>: <select
+			<span th:text="#{lang.change}" style="color: white" data-toggle='tooltip' data-placement='top' title='Dropdown menu to choose the lenguage'></span>: <select
 				id="locales">
-				<option value=""></option>
+				<option value=" "></option>
 				<option value="en" th:text="#{lang.eng}"></option>
 				<option value="es" th:text="#{lang.es}"></option>
 				<option value="eu" th:text="#{lang.eu}"></option>

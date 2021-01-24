@@ -1,5 +1,5 @@
 body {
-	background: #e9ecef;
+	background: #fff;
 }
 
 .navbar-custom {
@@ -8,8 +8,7 @@ body {
 
 .cr {
 	text-align: center;
-	background: #e9ecef;
-}
+	background: rgb(255, 255, 255)}
 .prp{
 	visibility:hidden;
 	display: none;
@@ -17,6 +16,7 @@ body {
 }
 .graphText{
 	 text-align: center;
+	 background: #fff;
 	
 }
 .levensh{
@@ -35,7 +35,9 @@ html, body, #container {
     padding: 0;
 }
 */
-
+.container{
+	background-color: #1d2124;
+}
 
 .navbar-custom .navbar-brand {
 	color: white;

@@ -41,15 +41,14 @@
 			document.getElementById("d2").innerHTML = "<p id='p1' class='p1'>"
 					+ fname + "</p>";
 			
-			if (codeAux.includes("html")) {
-				codeAux = code.replaceAll('#LINE_BREAK#', '\n');
-				codeAux = code.replaceAll('<', '&lt;');
+			codeAux = code.replaceAll('\r', '');
+			codeAux = code.replaceAll('#LINE_BREAK#', '\n');
 
-			} else {
 
-				codeAux = code.replaceAll('#LINE_BREAK#', '\n');
+			
+
 				
-			}
+		
 			
 			//document.getElementById("dem").innerHTML = codeAux;*/
 			

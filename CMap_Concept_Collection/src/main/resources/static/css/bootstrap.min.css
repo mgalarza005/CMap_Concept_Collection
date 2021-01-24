@@ -393,7 +393,7 @@ template {
 	font-size: 3.5rem;
 	font-weight: 300;
 	line-height: 1.2;
-	color: #2c68d7
+	color: rgb(0, 0, 255)
 }
 
 hr {
@@ -5235,6 +5235,7 @@ a.badge-dark:focus, a.badge-dark:hover {
 	background-color: #1d2124
 }
 
+
 a.badge-dark.focus, a.badge-dark:focus {
 	outline: 0;
 	box-shadow: 0 0 0 .2rem rgba(52, 58, 64, .5)
@@ -5243,7 +5244,6 @@ a.badge-dark.focus, a.badge-dark:focus {
 .jumbotron {
 	padding: 2rem 1rem;
 	margin-bottom: 2rem;
-	background-color: #e9ecef;
 	border-radius: .3rem
 }
 
