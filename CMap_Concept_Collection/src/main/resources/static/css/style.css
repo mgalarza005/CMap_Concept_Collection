@@ -73,6 +73,11 @@ p.p1{
 	font-size: 100%;
 }
 
+.linka:hover {
+    color: blue;
+    text-decoration: underline;
+}
+
 .vertical-center {
 	margin: 0;
 	position: absolute;
