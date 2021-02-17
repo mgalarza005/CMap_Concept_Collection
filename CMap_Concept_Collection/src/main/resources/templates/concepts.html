@@ -14,15 +14,10 @@
 <script language="JavaScript" type="text/javascript"
 	src="/js/sprinkle.js"></script>
 
-
-
-
 </head>
 <body>
 	<section>
 		<div class="cr">
-
-
 			<h2 th:text='#{navbar.text1}'></h2>
 			<h2 th:text='#{navbar.text2}'></h2>
 
@@ -50,26 +45,18 @@
 			var e = rr.split('<p class="prp">');
 			var l1=e[1].split('<');
 			
-			
 			var w1 =l1[0];
-			
 			var l2=e[2].split('<');
 			var w2 =l2[0];
-			
 			var l3=e[3].split('<');
 			var w3 =l3[0];
-		
 			var l4=e[4].split('<');
 			var w4 =l4[0];
-			
 			var l5=e[5].split('<');
 			var w5 =l5[0];
-			
 			var l6=e[6].split('<');
 			var w6 =l6[0];
 			
-			
-
 			/*<![CDATA[*/
 
 			var terms = /*[[${concepts}]]*/'default';
@@ -114,31 +101,10 @@
 						var aux = " ";
 						var ss = lines[i].split("[");
 						var ss1 = ss[1].split(";");
-						/*
-						for (var j = 0; j < ss1.length - 1; j++) {
-							if (ss1.length>1){
-								
-							}
-							
-							var ss2 = ss1[j].split(" ");
-							var ss3 = ss2[0].split(":");
-							var ss4 = ss3[0].split(".");
-							aux += "<li><a class='linka' href='http://localhost:9898/features/"+ss3[0]+"'>"
-									+ ss4[0] + "</a></li>";
-
-						}*/
-						
 						var ss2 = ss1[0].split(" ");
-						
-
 						var ss3 = ss2[0].split(":");
-						
-
 						var ss4 = ss3[0].split(".");
-						
-
-
-						aux += "<a class='linka' href='http://localhost:9898/features/"+ss3[0]+"'><img src='spider.jpg' alt='graph'/></a>";
+						aux += "<a class='linka' href='http://localhost:9898/features/"+ss3[0]+"'><img src='spider.jpg' alt='See graph'/></a>";
 						result += aux;
 						return (result);
 					}
@@ -208,8 +174,6 @@
 						+"' role='button' "
 						+ "aria-expanded='false'   aria-controls='multiCollapseExample data-toggle='tooltip' data-placement='top' title='Click to see more information about this concept'"
 						+ j +"'>"+concept[0].replaceAll('*', '')+"\n"+ w4+": "+getAllWeights(concept[0])+"</a> </p>";
-
-
 				var terms = concept[1].split(",");
 				//Table inside each concept
 				var a = "<table class='table'>"
@@ -218,11 +182,7 @@
 							+"<th scope='col'>#</th>"
 							+"<th scope='col'><div><p>"+w1+"</p></div></th>"
 							+"<th scope='col'><div><p>"+w2+"</p></div></th>"
-							+"<th scope='col'><div> <p data-toggle='tooltip' data-placement='top' title='Path of the file' >"+w3+"</p></div></th>"
-														 
-							
-							// +"<th scope='col'><div><button type='button' class='btn btn-secondary' data-toggle='tooltip' data-placement='top' title='Click if you want to see the similarity of the term with SPL features'> "+w5+"</button></div></th>"
-							  
+							+"<th scope='col'><div> <p data-toggle='tooltip' data-placement='top' title='Path of the file' >"+w3+"</p></div></th>"							  
 							+"<th scope='col'><div> <p data-toggle='tooltip' data-placement='top' title='Number of times this term appears throughout the Software Product Line'>"+w5+"</p></div></th>"
 							+"<th scope='col'><div> <p data-toggle='tooltip' data-placement='top' title='Click if you want to see the similarity of the term with SPL features'>"+w6+"</p></div></th>"
 						+"</tr>"
@@ -240,21 +200,14 @@
 							"</td><td display='inline-block' align='left'>" + getPath(term1) +
 					"</td><td align='center'>" + getApparition(term1) +
 					"</td><td align='center'>" + getFeature(term1)  +
-					"</td></tr>";
-					
+					"</td></tr>";	
 				}
-				
-
 				a += "</tbody></table>";
-
 				txt += "<div class='row'><div class='col'><div class='collapse multi-collapse' id='multiCollapseExample"
 						+ j + "'><div class='card card-body'>" + a;
-
 				txt += "</div></div></div></div>";
-
 			}
 			txt += "</li>";
-
 			document.getElementById("d2").innerHTML = txt;
 		</script>
 	</section>

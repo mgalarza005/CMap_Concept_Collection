@@ -41,11 +41,6 @@ html, body, #container {
 		<div id="g"></div>
 		<script th:src="@{/js/anychart-base.min.js}"></script>
 		<script th:src="@{/js/anychart-tag-cloud.min.js}"></script>
-
-
-		<!-- <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
-  <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>  -->
-
 		<script th:inline="javascript">
 			/*<![CDATA[*/
 
@@ -73,9 +68,6 @@ html, body, #container {
 
 				// set array of angles, by which words will be placed
 				chart.angles([ 0 ])
-				// enable color range
-				// chart.colorRange(true);
-				// set color range length
 				chart.colorRange().length('100%');
 
 				// display chart

@@ -24,8 +24,6 @@ public class Codefile {
 		this.setContent(content);
 	}
 
-
-
 	public String getId() {
 		return id;
 	}
@@ -33,8 +31,6 @@ public class Codefile {
 	public void setId(String id) {
 		this.id = id;
 	}
-
-
 
 	public String getContent() {
 		return content;

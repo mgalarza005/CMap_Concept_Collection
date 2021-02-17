@@ -44,21 +44,12 @@
 			codeAux = code.replaceAll('\r', '');
 			codeAux = code.replaceAll('#LINE_BREAK#', '\n');
 
-
-			
-
-				
-		
-			
-			//document.getElementById("dem").innerHTML = codeAux;*/
-			
 			function process(str) {
 				  var div = document.createElement('div');
 				  div.innerHTML = str.trim();
 
 				  return format(div, 0).innerHTML;
 				}
-
 				function format(node, level) {
 				  var indentBefore = new Array(level++ + 1).join('  '),
 				    indentAfter = new Array(level - 1).join('  '),
@@ -75,41 +66,10 @@
 				      node.appendChild(textNode);
 				    }
 				  }
-
 				  return node;
 				}
-
 				document.querySelector('#out').innerText = process(codeAux);
-			
-			
 		</script>
-
-
-
-
-
-
-
-
-
-
-
-
-		<!-- <script th:inline="javascript">
-			/*<![CDATA[*/
-
-			var code = /*[[${concepts}]]*/'default';
-			var fname = /*[[${paths}]]*/'default';
-
-			/*]]>*/
-			$(document).ready(function() {
-				//console.log("Kodea:" + code);
-				codeAux = code.replaceAll('#LINE_BREAK#', '\n');
-				$('.showText').text(codeAux);
-			});
-		</script> -->
-
-	</section>
-
+</section>
 </body>
 </html>

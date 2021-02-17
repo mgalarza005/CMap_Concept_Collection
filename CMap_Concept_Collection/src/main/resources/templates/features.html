@@ -28,12 +28,10 @@ html, body, #container {
 
 		<script th:src="@{/js/anychart-base.min.js}"></script>
 		<script th:src="@{/js/anychart-tag-cloud.min.js}"></script>
-
 		<script th:src="@{/js/anychart-exports.min.js}"></script>
 		<script th:src="@{/js/anychart-radar.min.js}"></script>
 		<script th:src="@{/js/anychart-ui.min.js}"></script>
 		<script th:src="@{/js/levenshtein.js}"></script>
-
 		<script th:inline="javascript">
 			/*<![CDATA[*/
 
@@ -127,8 +125,7 @@ html, body, #container {
 									levenshtein("Replaying", term) ] ]
 				};
 
-			anychart
-					.onDocumentReady(function() {
+			anychart.onDocumentReady(function() {
 						// create data set on our data
 						//Its created below
 

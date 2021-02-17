@@ -11,22 +11,14 @@
 </head>
 <body>
 	<section>
-
-		<div id="d">
-			
+		<div id="d">	
 			<div id="div" class="tagcloud06">
-
-
-
 				<script th:inline="javascript">
 					var txt = " ";
 					if (txt == " ") {
 						var txt = "<ul>";
-
 						/*<![CDATA[*/
-
 						var terms = /*[[${concepts}]]*/'default';
-
 						/*]]>*/
 						var lines = terms.split('\n');
 						
@@ -46,13 +38,9 @@
 						txt += "</ul>";
 
 						document.getElementById("div").innerHTML = txt;
-						
-
 					}
 				</script>
 
-
-				<!--  <script th:src="@{/js/cloud.js}"></script>  -->
 			</div>
 			<div id="container"></div>
 		</div>

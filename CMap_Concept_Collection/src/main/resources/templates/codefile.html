@@ -19,8 +19,6 @@
 		<div class="jumbotron jumbotron-fluid">
 			<div id="d3" class="container"></div>
 				<div id="hio" class="display-4"></div>
-				
-			 	
 					<script th:inline="javascript"> 
 					document.getElementById("pepe").innerHTML = "<p>Galipot</p>";		
 					
@@ -28,19 +26,11 @@
 					var con = /*[[${content}]]*/'default';
 					var fname = /*[[${fileName}]]*/'default';
 					/*]]>*/
-					
-				
-					
 					document.getElementById("d3").innerHTML = "<p>"+ con+"</p>";
 					document.getElementById("hio").innerHTML = fname;
 					document.getElementById("h11").innerHTML = "CodeFile content";
 					</script>  
-				
-	
-		
 		</div>
-		
-
 	</section>
 </body>
 </html>
